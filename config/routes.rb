@@ -1,9 +1,12 @@
 EventCoordinator::Application.routes.draw do
-  root :to => "sessions#new"
-  get "sign_in" => "sessions#new", :as => :sign_in
+  
 
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/signout" => "sessions#destroy", :as => :signout
+  root :to => "home#index"
+
+  devise_for :users
+  resources :users, :only => :show
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
