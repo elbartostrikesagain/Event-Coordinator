@@ -1,0 +1,19 @@
+%h1 Listing main_events
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @main_events.each do |main_event|
+    %tr
+      %td= main_event.name
+      %td= link_to 'Details', main_event
+      %td= link_to 'Edit', edit_main_event_path(main_event)
+      %td= link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Main event', new_main_event_path, :class => "btn js-btn"

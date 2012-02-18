@@ -37,7 +37,10 @@ gem "guard-rails", ">= 0.0.3", :group => :development
 gem "guard-livereload", ">= 0.3.0", :group => :development
 gem "guard-rspec", ">= 0.4.3", :group => :development
 gem "guard-cucumber", ">= 0.6.1", :group => :development
+gem "pry", :group => :development
+gem "pry-nav", :group => :development
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.4.3"
 gem "devise", ">= 2.0.0"
 gem "bootstrap-sass", "~> 2.0.0"
+gem "cancan", :git => "git://github.com/ryanb/cancan.git"

@@ -1,5 +1,8 @@
 class User
   include Mongoid::Document
+
+  has_many :main_events
+  has_many :event
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,6 +26,10 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+  #Oauth
+  field :provider, :type => String
+  field :uid,      :type => String
+
   ## Encryptable
   # field :password_salt, :type => String
 
@@ -39,7 +46,7 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-  field :name
+  field :name, :type => String
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me

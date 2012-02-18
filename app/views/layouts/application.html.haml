@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title Event Coordinator
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag :application
+    = stylesheet_link_tag "fullcalendar.css"
+    /= stylesheet_link_tag "application.css"
+    = javascript_include_tag "jquery.js"
+    = javascript_include_tag "jquery.rest.js"
+    = javascript_include_tag "rails.js"
+    = javascript_include_tag "application.js"
+
+    /these are needed for the calendar.
+    = javascript_include_tag "jquery-ui-1.8.11.custom.min.js"
+    = javascript_include_tag "fullcalendar.js"
+    = javascript_include_tag "calendar.js"
+    = csrf_meta_tags
+  %body{:class => params[:controller]}
+    #container.container
+      %header
+        %nav
+          %ul.hmenu
+            = render 'shared/navigation'
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+      #main{:role => "main"}
+        = yield
+      %footer
