@@ -17,9 +17,7 @@ class MainEventsController < ApplicationController
   # GET /main_events/1.json
   def show
     @main_event = MainEvent.find(params[:id])
-    @events = Event.scoped.where(main_event: @main_event.id)
-    @events = @events.after(params['start']) if (params['start'])
-    @events = @events.before(params['end']) if (params['end'])
+    @events = Event.where(main_event_id: @main_event.id)
 
     respond_to do |format|
       format.html # index.html.erb

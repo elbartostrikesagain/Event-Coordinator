@@ -3,7 +3,7 @@
 %p
   %h1
     = @main_event.name
-
+  %br/
   %b Listing events
   %table
     %tr
@@ -22,13 +22,13 @@
         %td= event.ends_at
         %td= event.all_day
         %td= event.description
-        %td= link_to 'Show', event
-        %td= link_to 'Edit', edit_event_path(event)
+        %td= link_to 'Show', main_event_event_path(event.main_event, event)
+        %td= link_to 'Edit', edit_main_event_event_path(event)
         %td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
   %br/
-  = link_to 'view calendar', calendar_path(@main_event)
+  = link_to 'view calendar', main_event_calendar_path(@main_event)
   %br/
-  = link_to 'New Event', new_event_path(@main_event)
+  = link_to 'New Event', new_main_event_event_path(@main_event)
 
 = link_to 'Edit', edit_main_event_path(@main_event)
 \|

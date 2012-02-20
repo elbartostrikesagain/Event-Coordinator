@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     @events = Event.scoped
     @events = @events.after(params['start']) if (params['start'])
     @events = @events.before(params['end']) if (params['end'])
+    @events = @events.where(main_event_id: params[:main_event_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -62,7 +63,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(show_event_path(main_event, @event), :notice => 'Event was successfully created.') }
+        format.html { redirect_to(main_event_event_path(main_event), :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }

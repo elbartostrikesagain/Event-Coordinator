@@ -16,8 +16,8 @@
       %td= event.ends_at
       %td= event.all_day
       %td= event.description
-      %td= link_to 'Show', event_path()
-      %td= link_to 'Edit', edit_event_path(event)
+      %td= link_to 'Show', main_event_event_path(event.main_event, event)
+      %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
       %td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
 %br/
 = link_to 'view calendar', calendar_path

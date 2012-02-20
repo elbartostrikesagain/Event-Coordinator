@@ -4,18 +4,21 @@ EventCoordinator::Application.routes.draw do
   devise_for :users
   resources :users, :only => :show
 
-  resources :main_events
+  resources :main_events do
+    resources :events, :as => :event
+    get "main_events/:main_event_id/calender/index" => "calendar#index", :as => :calendar
+  end
 
-  get "main_events/:main_event_id/events" => "events#index", :as => :events
-  post "main_events/:main_event_id/events" => "events#create", :as => :create_event
+  #get "main_events/:main_event_id/events" => "events#index", :as => :events
+  #post "main_events/:main_event_id/events" => "events#create", :as => :create_event
 
-  get "main_events/:main_event_id/event/new" => "events#new", :as => :new_event
-  get "main_events/:main_event_id/event/:id/edit" => "events#edit", :as => :edit_event
-  get "main_events/:main_event_id/event/:id(.:format)" => "events#show", :as => :event
-  put "main_events/:main_event_id/event/:id" => "events#update"
-  delete "main_events/:main_event_id/event/:id" => "events#destroy"
+  #get "main_events/:main_event_id/event/new" => "events#new", :as => :new_event
+  #get "main_events/:main_event_id/event/:id/edit" => "events#edit", :as => :edit_event
+  #get "main_events/:main_event_id/event/:id(.:format)" => "events#show", :as => :event
+  #put "main_events/:main_event_id/event/:id" => "events#update"
+  #delete "main_events/:main_event_id/event/:id" => "events#destroy"
 
-  get "main_events/:main_event_id/calender/index" => "calendar#index", :as => :calendar
+
 
 
   # The priority is based upon order of creation:
