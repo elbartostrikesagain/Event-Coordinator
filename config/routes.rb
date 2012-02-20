@@ -6,7 +6,7 @@ EventCoordinator::Application.routes.draw do
 
   resources :main_events do
     resources :events, :as => :event
-    get "main_events/:main_event_id/calender/index" => "calendar#index", :as => :calendar
+    get "main_events/:main_event_id/calender" => "calendar#index", :as => :calendar
   end
 
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
