@@ -3,7 +3,7 @@
 # this demo serves up.
 class CalendarController < ApplicationController
   def index
-    @events_path = main_event_event_index_path(params[:main_event_id])
+    @events_path = main_event_event_path(params[:main_event_id])
   end
 
 end

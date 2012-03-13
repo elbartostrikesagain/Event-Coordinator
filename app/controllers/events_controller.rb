@@ -7,12 +7,10 @@ class EventsController < ApplicationController
     # appropriate month/week/day.  It should be possiblt to change
     # this to be starts_at and ends_at to match rails conventions.
     # I'll eventually do that to make the demo a little cleaner.
-    binding.pry
     @events = Event.scoped
-    @events = @events.after(params['start']) if (params['start'])
-    @events = @events.before(params['end']) if (params['end'])
+    #@events = @events.after(params['start']) if (params['start'])
+    #@events = @events.before(params['end']) if (params['end'])
     @events = @events.where(main_event_id: params[:main_event_id])
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }

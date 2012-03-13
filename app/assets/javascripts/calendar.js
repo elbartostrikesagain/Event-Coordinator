@@ -5,9 +5,9 @@ $(document).ready(function() {
 	var m = date.getMonth();
 	var y = date.getFullYear();
     var event_path = $.trim($('#main_event_events_path').html())
-	
+
 	$('#calendar').fullCalendar({
-		editable: true,        
+		editable: true,
 		header: {
             left: 'prev,next today',
             center: 'title',
@@ -16,25 +16,25 @@ $(document).ready(function() {
         defaultView: 'month',
         height: 500,
         slotMinutes: 15,
-        
+
         loading: function(bool){
-            if (bool) 
+            if (bool)
                 $('#loading').show();
-            else 
+            else
                 $('#loading').hide();
         },
-        
-        // a future calendar might have many sources.        
+
+        // a future calendar might have many sources.
         eventSources: [{
             url: event_path,
             color: 'yellow',
             textColor: 'black',
             ignoreTimezone: false
         }],
-        
+
         timeFormat: 'h:mm t{ - h:mm t} ',
         dragOpacity: "0.5",
-        
+
         //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
         eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
             updateEvent(event, event_path);

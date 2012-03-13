@@ -28,7 +28,7 @@ class Event
       :end => ends_at.to_datetime.rfc822,
       :allDay => self.all_day,
       :recurring => false,
-      :url => Rails.application.routes.url_helpers.event_path(id)
+      :url => Rails.application.routes.url_helpers.main_event_event_path(self.main_event.id, id)
     }
 
   end
