@@ -4,13 +4,16 @@
   %h1
     = @main_event.name
   %br/
-  %b Listing events
-  %table
+  = link_to 'View Calendar', calendar_path(@main_event), :class => "btn"
+  = link_to 'New Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+  %br/
+  %br/
+  %h3 Calendar events
+  %table.table.table-bordered.table-striped
     %tr
       %th Title
-      %th Starts at
-      %th Ends at
-      %th All day
+      %th Time frame
+
       %th Description
       %th
       %th
@@ -18,17 +21,13 @@
     - @events.each do |event|
       %tr
         %td= event.title
-        %td= event.starts_at
-        %td= event.ends_at
-        %td= event.all_day
+        %td= format_event_time_frame(event)
         %td= event.description
         %td= link_to 'Show', main_event_event_path(event.main_event, event)
         %td= link_to 'Edit', edit_main_event_event_path(event)
-        /%td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
   %br/
-  = link_to 'view calendar', calendar_path(@main_event)
-  %br/
-  = link_to 'New Event', new_main_event_event_path(@main_event)
+
 
 = link_to 'Edit', edit_main_event_path(@main_event)
 \|
