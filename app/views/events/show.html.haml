@@ -14,6 +14,11 @@
 %p
   %b Description:
   = @event.description
+%p
+  %b Workers:
+  -@event.users.each do |user|
+    =link_to user.name, user
+    ,
 = link_to 'Edit', edit_main_event_event_path(@event.main_event, @event)
 |
 \#{link_to 'Back', main_event_path(@event.main_event)}

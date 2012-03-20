@@ -3,7 +3,7 @@ class Event
   include Mongoid::Timestamps
 
   belongs_to :main_event
-  belongs_to :user
+  has_and_belongs_to_many :users
 
 
   #scope :before, lambda {|end_time| {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}

@@ -104,4 +104,13 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def sign_up
+    #TODO: check for current user
+    event = Event.find(params[:id])
+    event.users << current_user
+    event.save!
+    redirect_to [event.main_event, event]
+  end
+
 end

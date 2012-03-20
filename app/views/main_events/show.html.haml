@@ -18,11 +18,13 @@
       %th
       %th
       %th
+      %th
     - @events.each do |event|
       %tr
         %td= event.title
         %td= format_event_time_frame(event)
         %td= event.description
+        %td= link_to 'Sign up', sign_up_for_event_path(event.id)
         %td= link_to 'Show', main_event_event_path(event.main_event, event)
         %td= link_to 'Edit', edit_main_event_event_path(event)
         %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
