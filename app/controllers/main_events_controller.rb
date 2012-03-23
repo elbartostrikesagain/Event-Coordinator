@@ -5,7 +5,8 @@ class MainEventsController < ApplicationController
   # GET /main_events
   # GET /main_events.json
   def index
-    @main_events = MainEvent.all
+    current_user_id = current_user.nil? ? nil : current_user.id
+    @main_events = MainEvent.where(user_id: current_user_id)
 
     respond_to do |format|
       format.html # index.html.erb
