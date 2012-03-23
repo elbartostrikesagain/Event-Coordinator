@@ -27,6 +27,11 @@ class MainEventsController < ApplicationController
 
   end
 
+  def show_events
+    @main_event = MainEvent.find(params[:id])
+    @events = Event.where(main_event_id: @main_event.id)
+  end
+
   # GET /main_events/new
   # GET /main_events/new.json
   def new

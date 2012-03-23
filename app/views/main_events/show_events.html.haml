@@ -1,0 +1,23 @@
+= render :partial => "event_header"
+
+%h3 Calendar events
+%table.table.table-bordered.table-striped
+  %tr
+    %th Title
+    %th Time frame
+
+    %th Description
+    %th Sign up/Full
+    %th
+    %th
+  - @events.each do |event|
+    %tr
+      %td= link_to event.title, main_event_event_path(event.main_event, event)
+      %td= format_event_time_frame(event)
+      %td= event.description
+      -if difference(event.num_users, event.users.count) == 0
+        %td= 'Full'
+      -else
+        %td= link_to 'Sign up', sign_up_for_event_path(event.id)
+      %td= link_to 'Edit', edit_main_event_event_path(event)
+      %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
