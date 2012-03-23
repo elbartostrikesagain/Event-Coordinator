@@ -9,5 +9,8 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.label :html
+    = f.text_area :html, :style => "width: 800px;"
   .actions
     = f.submit 'Save'

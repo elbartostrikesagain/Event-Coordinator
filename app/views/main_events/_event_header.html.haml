@@ -1,0 +1,12 @@
+%h1= @main_event.name
+%br/
+.subnav
+  %ul.nav.nav-pills
+    %li
+      = link_to "Home", @main_event
+    %li
+      = link_to 'View Calendar', calendar_path(@main_event)
+= link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+= link_to 'Edit', edit_main_event_path(@main_event), :class => "btn btn-primary"
+%br/
+%br/

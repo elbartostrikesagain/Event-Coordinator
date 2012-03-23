@@ -5,4 +5,5 @@ class MainEvent
   belongs_to :user
 
   field :name, :type => String
+  field :html, :type => String
 end
