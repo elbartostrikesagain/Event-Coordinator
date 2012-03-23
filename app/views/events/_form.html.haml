@@ -11,6 +11,9 @@
     = f.label :title
     %br/
     = f.text_field :title
+    = f.label "Number of workers(20 max)"
+    %br/
+    %input#event_num_users{:name => "event[num_users]", :max => "20", :min => "0", :type => "number"}/
   TODO: change to js datetime picker
   .field
     = f.label :starts_at

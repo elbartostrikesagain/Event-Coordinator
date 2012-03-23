@@ -1,12 +1,12 @@
 %h1 Listing events
-%table
+%table.table.table-bordered.table-striped
   %tr
     %th Title
     %th Starts at
     %th Ends at
     %th All day
     %th Description
-    %th
+    %th Workers needed
     %th
     %th
   - @events.each do |event|
@@ -16,6 +16,7 @@
       %td= event.ends_at
       %td= event.all_day
       %td= event.description
+      %td= difference(event.num_users, event.users.count)
       %td= link_to 'Show', main_event_event_path(event.main_event, event)
       %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
       /%td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete

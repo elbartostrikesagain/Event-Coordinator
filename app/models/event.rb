@@ -16,6 +16,7 @@ class Event
   field :ends_at, :field => DateTime
   field :all_day, :field => Boolean
   field :description, :field => String
+  field :num_users, :field => Integer
 
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
