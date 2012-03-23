@@ -9,11 +9,15 @@ class Ability
 
       if user.name
         can :create, MainEvent
-        can :create, Event
+        can :manage, Event, :main_event => {:user_id => user.id}
         can :manage, MainEvent, :user_id => user.id
         can :read, :all
       else
         can :read, :all
+        cannot :manage, MainEvent
+        cannot :manage, Event
+        cannot :create, Event
+        cannot :create, MainEvent
       end
     #   if user.admin?
     #     can :manage, :all

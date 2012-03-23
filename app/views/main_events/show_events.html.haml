@@ -8,8 +8,9 @@
 
     %th Description
     %th Sign up/Full
-    %th
-    %th
+    -if can? :update, @main_event
+      %th
+      %th
   - @events.each do |event|
     %tr
       %td= link_to event.title, main_event_event_path(event.main_event, event)
@@ -19,5 +20,6 @@
         %td= 'Full'
       -else
         %td= link_to 'Sign up', sign_up_for_event_path(event.id)
-      %td= link_to 'Edit', edit_main_event_event_path(event)
-      %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
+      -if can? :update, event
+        %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
+        %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete

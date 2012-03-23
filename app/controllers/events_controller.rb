@@ -33,6 +33,8 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+    main_event = MainEvent.find(params[:main_event_id])
+    redirect_to main_event and return unless current_user && main_event.user.id == current_user.id
     @event = Event.new
 
     respond_to do |format|
@@ -44,6 +46,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    redirect_to main_event_event_path(@event.main_event, @event) unless can? :update, @event
   end
 
   # POST /events

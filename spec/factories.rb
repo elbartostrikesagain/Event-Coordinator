@@ -23,3 +23,15 @@ Factory.define :main_event do |e|
   e.user {(Factory.create :user)}
 end
 
+####### Event ########
+
+Factory.define :event do |e|
+  e.title 'Event Title'
+  e.starts_at Time.now
+  e.ends_at {Time.now + 5.hours}
+  e.all_day false
+  e.description 'Event description'
+  e.num_users 1
+  e.main_event {Factory.create :main_event}
+end
+

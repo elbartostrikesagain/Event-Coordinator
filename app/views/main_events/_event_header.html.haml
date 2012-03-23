@@ -8,6 +8,8 @@
       = link_to 'View Calendar', calendar_path(@main_event)
     %li
       = link_to 'List Events', show_events_path(@main_event)
-= link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+-if can? :update, @main_event
+  = link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+
 %br/
 %br/
