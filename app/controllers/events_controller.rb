@@ -113,7 +113,16 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.users << current_user
     event.save!
-    redirect_to [event.main_event, event]
+    redirect_to show_events_path(event.main_event)
+  end
+
+  def unregister
+    puts "@@@@@EVENT_ID #{params[:id]}"
+    event = Event.find(params[:id])
+    user_count = event.users.where(_id: current_user.id).all.count
+    event.user_ids.delete(current_user.id) if user_count > 0
+    event.save!
+    redirect_to show_events_path(event.main_event)
   end
 
 end
