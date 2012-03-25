@@ -1,13 +1,27 @@
-%h1 Events you coordinate
+%h1 Events you coordinator
 = link_to 'Create a New Event', new_main_event_path, :class => "btn"
-%br
-%br
-
+%h2
 - @main_events.each do |main_event|
-  %h3= main_event.name
-  = link_to "View", main_event, :class => "btn btn-primary"
-  = link_to 'Edit', edit_main_event_path(main_event), :class => "btn btn-primary"
-  = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
-  %br
-
-%br
+  %p
+  .well
+    %h3= main_event.name
+    = link_to "View", main_event, :class => "btn btn-primary"
+    = link_to 'Edit', edit_main_event_path(main_event), :class => "btn btn-primary"
+    = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+%h1 Events you are working
+%table.table.table-bordered.table-striped
+  %tr
+    %th Title
+    %th Time frame
+    %th Description
+    -if can? :update, @main_event
+      %th
+      %th
+  - @my_events.each do |event|
+    %tr
+      %td= link_to event.title, main_event_event_path(event.main_event, event)
+      %td= format_event_time_frame(event)
+      %td= event.description
+      -if can? :update, event
+        %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
+        %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete

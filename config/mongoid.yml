@@ -1,14 +1,17 @@
 development:
   host: localhost
   database: event_coordinator_development
+  identity_map_enabled: true
 
 test:
   host: localhost
   database: event_coordinator_test
+  identity_map_enabled: true
 
 # set these environment variables on your prod server
 production:
   uri: <%= ENV['MONGOHQ_URL'] %>
+  identity_map_enabled: true
   #host: <%= ENV['MONGOID_HOST'] %>
   #port: <%= ENV['MONGOID_PORT'] %>
   #username: <%= ENV['MONGOID_USERNAME'] %>

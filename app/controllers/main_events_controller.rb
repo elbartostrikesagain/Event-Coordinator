@@ -7,6 +7,7 @@ class MainEventsController < ApplicationController
   def index
     current_user_id = current_user.nil? ? nil : current_user.id
     @main_events = MainEvent.where(user_id: current_user_id)
+    @my_events = Event.any_in(user_ids: [current_user_id]).all if current_user_id
 
     respond_to do |format|
       format.html # index.html.erb
