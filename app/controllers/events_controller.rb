@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :require_login, :only => :sign_up
   # GET /events
   # GET /events.xml
   def index
@@ -109,7 +110,6 @@ class EventsController < ApplicationController
   end
 
   def sign_up
-    #TODO: check for current user
     event = Event.find(params[:id])
     event.users << current_user
     event.save!

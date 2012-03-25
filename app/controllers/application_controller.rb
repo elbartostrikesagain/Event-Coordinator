@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
     return session[:return_to] || request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
+  def require_login
+    unless current_user
+      flash[:error] = "Access denied. Please sign in first."
+      session[:return_to] = request.referer
+      redirect_to new_user_session_path
+    end
+  end
+
 end
