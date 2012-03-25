@@ -16,8 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Access denied."
-    redirect_to root_url
+    flash[:error] = "Access denied. Please sign in first."
+    session[:return_to] = request.referer
+    redirect_to new_user_session_path
+  end
+
+  def after_sign_in_path_for(resource)
+    return session[:return_to] || request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
 end
