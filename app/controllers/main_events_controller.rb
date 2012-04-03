@@ -94,4 +94,10 @@ class MainEventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+#  def register
+#    @main_event = MainEvent.find(params[:id])
+#    @main_event.workers << current_user
+#    @main_event.save!
+#  end
 end
