@@ -1,13 +1,16 @@
-%h1= @main_event.name
+%h1
+  = @main_event.name
 %br/
 .subnav
-  %ul.nav.nav-pills
-    %li
-      = link_to "Home", @main_event
-    %li
-      = link_to 'View Calendar', calendar_path(@main_event)
-    %li
-      = link_to 'List Events', show_events_path(@main_event)
+  %ul.nav.nav-tabs
+    = tab "Home", @main_event
+    = tab 'View Calendar', calendar_path(@main_event)
+    =tab 'List Events', show_events_path(@main_event)
+    -if current_user && current_user.registered_for?(@main_event)
+      %li= link_to(raw("<i class='icon-minus-sign'></i> Unregister"), unregister_for_main_event_path(@main_event), :method => :post)
+    -else
+      %li= link_to(raw("<i class='icon-plus-sign'></i> Register"), register_for_main_event_path(@main_event), :method => :post)
+
 -if can? :update, @main_event
   = link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
 

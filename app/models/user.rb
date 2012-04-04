@@ -3,6 +3,7 @@ class User
 
   has_many :main_events
   has_many :events
+  belongs_to :registered_main_events, class_name: "MainEvent", inverse_of: "workers"
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -53,7 +54,13 @@ class User
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
   def registered_for?(event)
-    return true if Event.where(:_id => event.id).any_in(user_ids: [self.id]).all.count > 0
+    if event.is_a?(Event)
+      return true if Event.where(:_id => event.id).any_in(user_ids: [self.id]).all.count > 0
+      false
+    end
+    if event.is_a?(MainEvent)
+      return true if event.workers.any_in(workers: [self.id]).count == 0
+    end
     false
   end
 end

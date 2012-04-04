@@ -1,14 +1,15 @@
 %h1 Events you coordinator
-= link_to 'Create a New Event', new_main_event_path, :class => "btn"
+= link_to 'Create a New Event', new_main_event_path, :class => "btn btn-primary"
 %h2
 - @main_events.each do |main_event|
   %p
   .well
     %h3= main_event.name
-    = link_to "View", main_event, :class => "btn btn-primary"
-    = link_to 'Edit', edit_main_event_path(main_event), :class => "btn btn-primary"
+    = link_to "View", main_event, :class => "btn"
+    = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
     = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
-%h1 Events you are working
+
+%h1 Individual events you are working
 %table.table.table-bordered.table-striped
   %tr
     %th Title
@@ -25,5 +26,12 @@
       %td= event.description
       %td= link_to 'Unregister', unregister_from_event_path(event.id)
       -if can? :update, event
-        %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
+        %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
         %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
+
+-if @registered_events
+  %h1 Main events you are registered for
+  %h4
+    %ul
+      -@registered_events.each do |event|
+        %li= link_to event.name, event

@@ -8,7 +8,7 @@ class MainEventsController < ApplicationController
     current_user_id = current_user.nil? ? nil : current_user.id
     @main_events = MainEvent.where(user_id: current_user_id)
     @my_events = Event.any_in(user_ids: [current_user_id]).all if current_user_id
-
+    @registered_events = current_user.registered_main_events.to_a
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @main_events }
@@ -95,9 +95,34 @@ class MainEventsController < ApplicationController
     end
   end
   
-#  def register
-#    @main_event = MainEvent.find(params[:id])
-#    @main_event.workers << current_user
-#    @main_event.save!
-#  end
+  def register
+    main_event = MainEvent.find(params[:id])
+    main_event.workers << current_user if current_user && current_user.registered_for?(main_event)
+    if main_event.save!
+      redirect_to main_event, notice: "You are now registered for #{main_event.name}"
+    else
+      redirect_to main_event, error: "Failed to register you for #{main_event.name}"
+    end
+  end
+
+  def unregister
+    main_event = MainEvent.find(params[:id])
+    users_events = Event.where(user_ids: current_user.id).all
+    #slooooowww
+    users_events.each do |event|
+      if event.main_event.id == main_event.id
+        flash[:error] = "Please unregister from all events you are working before unregistering from #{main_event.name}"
+        redirect_to main_event
+        return
+      end
+    end
+    user_count = main_event.workers.where(_id: current_user.id).all.count
+    main_event.user_ids.delete(current_user.id) if user_count > 0
+    if main_event.save!
+      redirect_to main_event, notice: "Succesfully unregistered for #{main_event.name}"
+    else
+      flash[:error] = "Failed to unregister you for #{main_event.name}"
+      redirect_to main_event
+    end
+  end
 end
