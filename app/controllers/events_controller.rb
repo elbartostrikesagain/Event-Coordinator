@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @main_event = @event.main_event
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,6 +58,7 @@ class EventsController < ApplicationController
     params[:event][:main_event_id] = params[:main_event_id]
     params[:event][:starts_at] = Time.parse(params[:event]["starts_at(1i)"] + '-' + params[:event]["starts_at(2i)"] + '-' + params[:event]["starts_at(3i)"] + ' ' + params[:event]["starts_at(4i)"] + ':' + params[:event]["starts_at(5i)"])
     params[:event][:ends_at] = Time.parse(params[:event]["ends_at(1i)"] + '-' + params[:event]["ends_at(2i)"] + '-' + params[:event]["ends_at(3i)"] + ' ' + params[:event]["ends_at(4i)"] + ':' + params[:event]["ends_at(5i)"])
+    params[:event][:all_day] =  params[:event][:all_day] == "0"? false : true
     (1..5).each do |i|
       params[:event].delete("starts_at(#{i}i)")
       params[:event].delete("ends_at(#{i}i)")
@@ -83,6 +85,9 @@ class EventsController < ApplicationController
   # viv la REST!
   def update
     @event = Event.find(params[:id])
+    params[:event][:starts_at] = Time.parse(params[:event]["starts_at(1i)"] + '-' + params[:event]["starts_at(2i)"] + '-' + params[:event]["starts_at(3i)"] + ' ' + params[:event]["starts_at(4i)"] + ':' + params[:event]["starts_at(5i)"])
+    params[:event][:ends_at] = Time.parse(params[:event]["ends_at(1i)"] + '-' + params[:event]["ends_at(2i)"] + '-' + params[:event]["ends_at(3i)"] + ' ' + params[:event]["ends_at(4i)"] + ':' + params[:event]["ends_at(5i)"])
+    params[:event][:all_day] =  params[:event][:all_day] == "0"? false : true
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

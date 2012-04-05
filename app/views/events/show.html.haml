@@ -1,23 +1,17 @@
-= link_to 'Edit', edit_main_event_event_path(@event.main_event, @event), :class => 'btn btn-primary' if can? :update, @event
-
+= render :partial => "main_events/event_header"
 %p#notice= notice
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Starts at:
-  = @event.starts_at
-%p
-  %b Ends at:
-  = @event.ends_at
-%p
-  %b All day:
-  = @event.all_day
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Workers:
-  -@event.users.each do |user|
-    =link_to user.name, user
-    ,
+= link_to 'Edit', edit_main_event_event_path(@event.main_event, @event), :class => 'btn btn-primary' if can? :update, @event
+%div.well
+  %h2= @event.title
+  -if @event.all_day
+    %b All day-
+    %b= @event.starts_at.strftime("%a, %b %d, %Y")
+  -else
+    %b= @event.starts_at.to_s + "-" + @event.ends_at.to_s
+  %p
+    %b Workers:
+    -@event.users.each_with_index do |user, i|
+      =link_to user.name, user
+      = ", " unless @event.users.length - 1 == i
+  %p
+    =raw(@event.description)

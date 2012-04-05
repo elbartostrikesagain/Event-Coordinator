@@ -1,35 +1,39 @@
-= form_for([:main_event, @event], :url => url) do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@event.errors.count, "error")
-        prohibited this event from being saved:
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
-  .field
-    = f.label :title
-    %br/
-    = f.text_field :title
-    = f.label "Number of workers(20 max)"
-    %br/
-    = f.number_field :num_users, :in => 0..20
-  TODO: change to js datetime picker
-  .field
-    = f.label :starts_at
-    %br/
-    = f.datetime_select :starts_at
-  .field
-    = f.label :ends_at
-    %br/
-    = f.datetime_select :ends_at
-  .field
-    = f.label :all_day
-    %br/
-    = f.check_box :all_day
-  .field
-    = f.label :description
-    %br/
-    = f.text_area :description
-  .actions
-    = f.submit
+= form_for([:main_event, @event], :url => url, html: {class: 'form-horizontal'}) do |f|
+  %legend
+  %fieldset
+    - if @event.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@event.errors.count, "error")
+          prohibited this event from being saved:
+        %ul
+          - @event.errors.full_messages.each do |msg|
+            %li= msg
+    .control-group
+      = f.label :title, class: 'control-label'
+      .controls
+        = f.text_field :title, class: 'input-xlarg'
+    .control-group
+      = f.label "Number of workers", class: 'control-label'
+      .controls
+        = f.number_field :num_users, :in => 0..20
+        %p.help-block 20 max
+    TODO: change to js datetime picker
+    .field
+      = f.label :starts_at
+      %br/
+      = f.datetime_select :starts_at
+    .field
+      = f.label :ends_at
+      %br/
+      = f.datetime_select :ends_at
+      .control-group
+        = f.label :all_day, class: 'control-label'
+        .controls
+          = f.check_box :all_day
+    .field
+      = f.label :description
+      %br/
+      = f.text_area :description, :style => "width: 800px;"
+    .actions
+      = f.submit

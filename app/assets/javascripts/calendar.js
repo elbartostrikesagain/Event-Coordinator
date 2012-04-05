@@ -7,13 +7,18 @@ $(document).ready(function() {
     var event_path = $.trim($('#main_event_events_path').html())
 
 	$('#calendar').fullCalendar({
-		editable: true,
-		header: {
+
+  editable: true,
+  header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        defaultView: 'month',
+        //TODO: load setting from rails
+        defaultView: 'agendaDay',
+        month: 4, 
+        date: 25,
+        year: 2012,
         height: 500,
         slotMinutes: 15,
 
@@ -51,6 +56,7 @@ $(document).ready(function() {
         }
 	});
 });
+
 
 function updateEvent(the_event, event_path) {
     $.update(
