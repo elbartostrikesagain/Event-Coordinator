@@ -3,6 +3,8 @@ class User
 
   has_many :main_events
   has_many :events
+  has_many :authentications
+
   belongs_to :registered_main_events, class_name: "MainEvent", inverse_of: "workers"
   
   # Include default devise modules. Others available are:
@@ -49,8 +51,8 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   field :name, :type => String
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_presence_of :name, :email, :password
+  validates_uniqueness_of :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
   def registered_for?(event)
@@ -63,5 +65,16 @@ class User
     end
     false
   end
+
+  def apply_omniauth(omniauth)
+    self.email = omniauth['user_info']['email'] if email.blank?
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+
+  #Todo: is this needed?
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
+  end
+
 end
 

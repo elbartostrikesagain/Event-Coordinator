@@ -1,7 +1,8 @@
 EventCoordinator::Application.routes.draw do
   root :to => "home#index"
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => { :registrations =>'registrations' }
   resources :users, :only => :show
 
   resources :main_events do
@@ -11,8 +12,12 @@ EventCoordinator::Application.routes.draw do
   get "main_events/:main_event_id/calender" => "calendar#index", :as => :calendar
   get "events/:id/sign_up" => "events#sign_up", :as => :sign_up_for_event
   get "events/:id/unregister" => "events#unregister", :as => :unregister_from_event
+
   post "main_events/:id/register" => "main_events#register", :as => :register_for_main_event
   post "main_events/:id/unregister" => "main_events#unregister", :as => :unregister_for_main_event
+
+  match '/auth/:provider/callback' => 'authentications#create'
+  resources :authentications
 
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
   #post "main_events/:main_event_id/events" => "events#create", :as => :create_event

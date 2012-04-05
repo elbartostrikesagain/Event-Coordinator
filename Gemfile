@@ -41,7 +41,13 @@ gem "pry", :group => :development
 gem "pry-nav", :group => :development
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.4.3"
+#authentication
 gem "devise", ">= 2.0.0"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "omniauth-openid"
+
 gem "bootstrap-sass", "~> 2.0.0"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
