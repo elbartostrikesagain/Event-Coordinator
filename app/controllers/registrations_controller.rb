@@ -12,7 +12,10 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if session[:omniauth]
       @user.apply_omniauth(session[:omniauth])
-      @user.valid?
+      if @user.valid?
+        @user.authentications.last.save!
+        @user.save!
+      end
     end
   end
 end

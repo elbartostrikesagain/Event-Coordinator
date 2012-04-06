@@ -11,12 +11,13 @@
     .control-group
       = f.label :name
       = f.text_field :name
-    .control-group
-      = f.label :password
-      = f.password_field :password
-    .control-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
+    -unless session["omniauth"]
+      .control-group
+        = f.label :password
+        = f.password_field :password
+      .control-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
     %p= f.submit "Sign up", class: 'btn btn-primary'
   - if !user_signed_in? && !session[:omniauth]
     = render :partial => 'authentications/sign_up', :locals => {:source => "sign_up"}

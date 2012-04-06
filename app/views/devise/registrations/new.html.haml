@@ -9,11 +9,12 @@
     .control-group
       = f.label :email
       = f.email_field :email
-    .control-group
-      = f.label :password
-      = f.password_field :password
-    .control-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
+    -unless session[:omniauth]
+      .control-group
+        = f.label :password
+        = f.password_field :password
+      .control-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
     %p= f.submit "Sign up", class: 'btn btn-primary'
 = render :partial => "devise/shared/links"

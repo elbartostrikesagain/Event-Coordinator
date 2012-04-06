@@ -53,6 +53,7 @@ class User
   field :name, :type => String
   validates_presence_of :name, :email
   validates_uniqueness_of :email, :case_sensitive => false
+  validate :has_authentication
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
   def registered_for?(event)
@@ -67,15 +68,20 @@ class User
   end
 
   def apply_omniauth(omniauth)
-    binding.pry
     self.email = omniauth['info']['email'] if email.blank?
     self.name = omniauth['info']['name'] if name.blank?
-    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    self.authentications << authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
 
   #Todo: is this needed?
   def password_required?
     (authentications.empty? || !password.blank?) && super
+  end
+
+  def has_authentication
+    unless (authentications.present? || password.present?)
+      errors.add(:base, "Password or authentication is required.")
+    end
   end
 
 end

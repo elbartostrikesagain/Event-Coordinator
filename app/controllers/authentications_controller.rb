@@ -9,7 +9,9 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.where(provider: omniauth['provider'], uid: omniauth['uid']).first
     if authentication
       flash[:notice] = "Signed in successfully."
-      sign_in_and_redirect(:user, authentication.user)
+      #sign_in_and_redirect(:user, authentication.user)
+      sign_in authentication.user
+      redirect_to main_events_path
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."
@@ -23,7 +25,7 @@ class AuthenticationsController < ApplicationController
         sign_in_and_redirect(:user, user)
       else
         session[:omniauth] = omniauth.except('extra')
-        flash[:notice] = "No account "
+        #flash[:notice] = "No account"
         redirect_to new_user_registration_url
       end
       #flash[:notice] = "No account was found matching your #{omniauth['provider']} authentication. Please (re)add this authentication type under your settings or signup for an account."
