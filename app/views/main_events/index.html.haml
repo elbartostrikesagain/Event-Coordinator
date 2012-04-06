@@ -1,14 +1,16 @@
-.well
-  %h1 Events you coordinator
-  = link_to 'Create a New Event', new_main_event_path, :class => "btn btn-primary"
-  %h2
-  - @main_events.each do |main_event|
-    %p
-    .well
-      %h3= main_event.name
-      = link_to "View", main_event, :class => "btn"
-      = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
-      = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+%h1
+  Events you coordinator
+= link_to new_main_event_path, :class => "btn" do
+  %i.icon-pencil
+  Create a new event to coordinate »
+%h2
+- @main_events.each do |main_event|
+  %p
+  .well
+    %h3= main_event.name
+    = link_to "View", main_event, :class => "btn"
+    = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
+    = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
 
 -unless @registered_events.blank?
   .well
