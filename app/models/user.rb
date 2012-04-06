@@ -51,7 +51,7 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   field :name, :type => String
-  validates_presence_of :name, :email, :password
+  validates_presence_of :name, :email
   validates_uniqueness_of :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
@@ -67,7 +67,9 @@ class User
   end
 
   def apply_omniauth(omniauth)
-    self.email = omniauth['user_info']['email'] if email.blank?
+    binding.pry
+    self.email = omniauth['info']['email'] if email.blank?
+    self.name = omniauth['info']['name'] if name.blank?
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
 
