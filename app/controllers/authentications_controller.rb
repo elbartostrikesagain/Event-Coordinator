@@ -5,7 +5,8 @@ class AuthenticationsController < ApplicationController
 
   def create
     omniauth = request.env["omniauth.auth"]
-    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    #authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    authentication = Authentication.where(provider: omniauth['provider'], uid: omniauth['uid']).first
     if authentication
       flash[:notice] = "Signed in successfully."
       sign_in_and_redirect(:user, authentication.user)
