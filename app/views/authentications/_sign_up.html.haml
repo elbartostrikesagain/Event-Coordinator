@@ -1,10 +1,20 @@
-%a.auth_provider{:href => "/auth/twitter"}
-  = image_tag "twitter_64.png", :size => "64x64",:alt => "Twitter"
-  Twitter
-%a.auth_provider{:href => "/auth/facebook"}
-  = image_tag "facebook_64.png", :size => "64x64",:alt => "Facebook"
-  Facebook
-%a.auth_provider{:href => "/auth/google"}
-  = image_tag "google_64.png", :size => "64x64",:alt => "Google"
-  Google
-.clear
+%a{:href => "/auth/twitter"}
+  = image_tag "sign_in_twitter.png", :size => "179x30",:alt => "Twitter"
+%br
+%a{:href => "/auth/facebook"}
+  = image_tag "sign_in_facebook.png", :size => "179x30",:alt => "Facebook"
+%br
+%a{:href => "/auth/google"}
+  = image_tag "sign_in_google.png", :size => "179x30",:alt => "Google"
+
+
+-#%a.auth_provider{:href => "/auth/twitter"}
+-#  = image_tag "twitter_64.png", :size => "64x64",:alt => "Twitter"
+-#  Twitter
+-#%a.auth_provider{:href => "/auth/facebook"}
+-#  = image_tag "facebook_64.png", :size => "64x64",:alt => "Facebook"
+-#  Facebook
+-#%a.auth_provider{:href => "/auth/google"}
+-#  = image_tag "google_64.png", :size => "64x64",:alt => "Google"
+-#  Google
+-#.clear

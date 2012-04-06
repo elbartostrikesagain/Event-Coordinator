@@ -1,16 +1,24 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %p
-    = f.label :email
-    = f.text_field :email
-  %p
-    = f.label :password
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %p
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %p= f.submit "Sign in"
+.page-header
+  %h1 Sign in
+.row
+  .span4
+    .well
+      %h3 Local Login
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: 'form-inline'}) do |f|
+        %p
+          = f.text_field :email, placeholder: "Email"
+        %p
+          = f.password_field :password, placeholder: "Password"
+        - if devise_mapping.rememberable?
+          %p
+            = f.check_box :remember_me
+            = f.label :remember_me
+        = f.submit "Sign in", class: "btn"
+  .span0
+    %h2 Or
+  .span4
+    .well
+      %h3 External Service Logins
+      - if !user_signed_in?
+        = render :partial => 'authentications/sign_in', :locals => {:source => "sign_in"}
 = render :partial => "devise/shared/links"
-- if !user_signed_in?
-  = render :partial => 'authentications/sign_in', :locals => {:source => "sign_in"}

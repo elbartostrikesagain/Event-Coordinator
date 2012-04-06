@@ -1,37 +1,51 @@
-%h1 Events you coordinator
-= link_to 'Create a New Event', new_main_event_path, :class => "btn btn-primary"
-%h2
-- @main_events.each do |main_event|
-  %p
+.well
+  %h1 Events you coordinator
+  = link_to 'Create a New Event', new_main_event_path, :class => "btn btn-primary"
+  %h2
+  - @main_events.each do |main_event|
+    %p
+    .well
+      %h3= main_event.name
+      = link_to "View", main_event, :class => "btn"
+      = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
+      = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+
+-unless @registered_events.blank?
   .well
-    %h3= main_event.name
-    = link_to "View", main_event, :class => "btn"
-    = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
-    = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+    %h1 Main events you are registered for
+    %h4
+      %ul
+        -@registered_events.each do |event|
+          %li= link_to event.name, event
+-else
+  %br
+  .alert.alert-block
+    %a.close{"data-dismiss" => "alert"} ×
+    %p You're not registered for any events. Please register with a link provided by an event coordinator.
 
-%h1 Individual events you are working
-%table.table.table-bordered.table-striped
-  %tr
-    %th Title
-    %th Time frame
-    %th Description
-    %th
-    -if can? :update, @main_event
-      %th
-      %th
-  - @my_events.each do |event|
-    %tr
-      %td= link_to event.title, main_event_event_path(event.main_event, event)
-      %td= format_event_time_frame(event)
-      %td= event.description
-      %td= link_to 'Unregister', unregister_from_event_path(event.id)
-      -if can? :update, event
-        %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
-        %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
-
--if @registered_events
-  %h1 Main events you are registered for
-  %h4
-    %ul
-      -@registered_events.each do |event|
-        %li= link_to event.name, event
+-unless @my_events.blank?
+  .well
+    %h1 Individual events you are working
+    %table.table.table-bordered.table-striped
+      %tr
+        %th Title
+        %th Time frame
+        %th Description
+        %th
+        -if can? :update, @main_event
+          %th
+          %th
+      - @my_events.each do |event|
+        %tr
+          %td= link_to event.title, main_event_event_path(event.main_event, event)
+          %td= format_event_time_frame(event)
+          %td= event.description
+          %td= link_to 'Unregister', unregister_from_event_path(event.id)
+          -if can? :update, event
+            %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
+            %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
+-else
+  %br
+  .alert.alert-block
+    %a.close{"data-dismiss" => "alert"} ×
+    %p You're not signed up to work for any events

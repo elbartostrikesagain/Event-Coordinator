@@ -46,7 +46,7 @@ gem "devise", ">= 2.0.0"
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
-gem "omniauth-openid"
+gem "omniauth-google"
 
 gem "bootstrap-sass", "~> 2.0.0"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git"

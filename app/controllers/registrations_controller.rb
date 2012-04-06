@@ -6,6 +6,19 @@ class RegistrationsController < Devise::RegistrationsController
     #@user.save!
   end
 
+  def update
+    @user = User.find(current_user.id)
+    if @user.update_attributes(params[:user])
+      # Sign in the user by passing validation in case his password changed
+      sign_in @user, :bypass => true
+      flash[:notice] = "Profile updated"
+      redirect_to edit_user_registration_path
+    else
+      flash[:error] = "Failed to update profile"
+      render "edit"
+    end
+  end
+
   private
 
   def build_resource(*args)

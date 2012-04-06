@@ -11,7 +11,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Signed in successfully."
       #sign_in_and_redirect(:user, authentication.user)
       sign_in authentication.user
-      redirect_to main_events_path
+      redirect_to session[:return_to] || main_events_path
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."
@@ -22,7 +22,9 @@ class AuthenticationsController < ApplicationController
       user.apply_omniauth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
-        sign_in_and_redirect(:user, user)
+        #sign_in_and_redirect(:user, user)
+        sign_in user
+        redirect_to session[:return_to] || main_events_path
       else
         session[:omniauth] = omniauth.except('extra')
         #flash[:notice] = "No account"

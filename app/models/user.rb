@@ -75,7 +75,8 @@ class User
 
   #Todo: is this needed?
   def password_required?
-    (authentications.empty? || !password.blank?) && super
+    #(authentications.empty? || !password.blank?) && super
+    authentications.empty? && password.empty?
   end
 
   def has_authentication
