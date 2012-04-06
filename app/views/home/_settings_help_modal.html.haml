@@ -1,0 +1,23 @@
+#helpModal.modal.hide.fade{:style => "display: none; "}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Help setting up your event
+  .modal-body
+    %p
+      We are currently in alpha. If I am able to add more features I will integrate tools to help you generate html for
+      your event home page and event descriptions.
+    %h4 Twitter Bootstrap
+    %br
+    %p
+      This site uses Twitter Bootstrap for style and some features,
+      which means you also have access to Twitter Bootstrap when writing your html.
+    =link_to "Twitter Bootstrap Documentation »", "http://twitter.github.com/bootstrap/index.html", class: 'btn', target: '_blank'
+    %br
+    %p
+      %h4 Other html help
+      If you have 0 html experience and the Twitter Bootstrap documentation is not enough, something to help you write
+      html may be helpful. Google for "html generator". From a glance html.am looks cool.
+    =link_to "Html.am  »", "http://www.html.am", class: 'btn', target: '_blank'
+  .modal-footer
+    %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+%a.btn{"data-toggle" => "modal", :href => "#helpModal"} Help me »

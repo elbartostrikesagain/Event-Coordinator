@@ -12,7 +12,7 @@
           %h3 2. Create a html page
           %p  Add an faq, map and other event details your volunteers and works need to know about.
           %p
-            %a.btn{:href => "#"} Help me »
+            =render :partial => "settings_help_modal"
         .span4
           %h3 3. Share the event
           %p  Share your Event Coordinator event with your workers and volunteers.
@@ -24,9 +24,9 @@
           %p
         .span4
           %h3 2. Sign up for the events
-          %p  Sign up for available event positions through the event calendar.
+          %p  Sign up for available event positions through the event list and calendar.
           %p
-            %a.btn{:href => "#"} Help me »
+            =render :partial => "register_help_modal"
   %hr
     %footer
       %p © Coshx Labs 2012

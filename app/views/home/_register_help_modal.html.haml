@@ -1,0 +1,16 @@
+#registerHelpModal.modal.hide.fade{:style => "display: none; "}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Help signing up for events
+  .modal-body
+    %p
+      Your event coordinator will give you a link to the main event(search feature coming someday hopefully). Using that you
+      can navigate to sub events via the calendar or event list view. If workers are needed for the event there will be
+      a place you can click to register to work an event. Please read the event home page posted by the coordinator as
+      it will have specific instructions.
+    %br
+    %p
+      To see events you have signed up for, click on 'My Events' on the top navigation bar.
+  .modal-footer
+    %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+%a.btn{"data-toggle" => "modal", :href => "#registerHelpModal"} Help me »
