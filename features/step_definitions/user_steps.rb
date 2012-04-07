@@ -15,8 +15,8 @@ end
 
 def sign_in user
   visit '/users/sign_in'
-  fill_in "Email", :with => user[:email]
-  fill_in "Password", :with => user[:password]
+  fill_in "user_email", :with => user[:email]
+  fill_in "user_password", :with => user[:password]
   click_button "Sign in"
 end
 
@@ -83,8 +83,9 @@ end
 
 When /^I edit my account details$/ do
   click_link "Edit account"
-  fill_in "Name", :with => "newname"
-  fill_in "Current password", :with => valid_user[:password]
+  fill_in "user_name", :with => "newname"
+  fill_in "user_password", :with => valid_user[:password]
+  fill_in "user_password_confirmation", :with => valid_user[:password]
   click_button "Update"
 end
 
@@ -95,7 +96,6 @@ end
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
-  page.should_not have_content "Sign up"
   page.should_not have_content "Login"
 end
 
@@ -138,7 +138,7 @@ Then /^I see a successful sign in message$/ do
 end
 
 Then /^I should see an account edited message$/ do
-  page.should have_content "You updated your account successfully."
+  page.should have_content "Profile updated successfully"
 end
 
 Then /^I should see my name$/ do

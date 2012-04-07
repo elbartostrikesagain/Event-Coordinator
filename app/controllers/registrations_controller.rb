@@ -8,10 +8,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     @user = User.find(current_user.id)
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user][:password] = nil
+      params[:user][:password_confirmation] = nil
+    end
     if @user.update_attributes(params[:user])
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true
-      flash[:notice] = "Profile updated"
+      flash[:notice] = "Profile updated successfully"
       redirect_to edit_user_registration_path
     else
       flash[:error] = "Failed to update profile"

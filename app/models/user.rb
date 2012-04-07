@@ -73,10 +73,9 @@ class User
     self.authentications << authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
 
-  #Todo: is this needed?
   def password_required?
-    #(authentications.empty? || !password.blank?) && super
-    authentications.empty? && password.empty?
+    (authentications.empty? || !password.blank?) && super
+    (authentications.empty? || !password.nil?) && super
   end
 
   def has_authentication
