@@ -16,6 +16,8 @@ module NavigationHelpers
 
     when /the sign in page/
       '/users/sign_in'
+    when /main events page/
+      '/main_events'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

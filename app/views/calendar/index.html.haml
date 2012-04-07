@@ -4,3 +4,6 @@
 
 #main_event_events_path{:style => "display:none;"}
   = @events_path
+
+#calendar_view{:style => "display:none;"}
+  = @main_event.default_calendar_view || 'agendaDay'

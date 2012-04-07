@@ -7,4 +7,5 @@ class MainEvent
 
   field :name, :type => String
   field :html, :type => String
+  field :default_calendar_view, :type => String
 end

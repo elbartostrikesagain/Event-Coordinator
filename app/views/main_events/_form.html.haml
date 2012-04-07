@@ -9,8 +9,20 @@
   .field
     = f.label :name
     = f.text_field :name
+  .control-group
+    %label.control-label Default Calendar View
+    .controls
+      %label.radio
+        = f.radio_button(:default_calendar_view, "agendaDay")
+        Day
+      %label.radio
+        = f.radio_button(:default_calendar_view, "agendaWeek")
+        Week
+      %label.radio
+        = f.radio_button(:default_calendar_view, "month")
+        Month
   .field
     = f.label :html
     = f.text_area :html, :style => "width: 800px;"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn'

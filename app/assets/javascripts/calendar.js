@@ -15,7 +15,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         //TODO: load setting from rails
-        defaultView: 'agendaDay',
+        defaultView: $.trim($("#calendar_view").html()),
         month: 4, 
         date: 25,
         year: 2012,

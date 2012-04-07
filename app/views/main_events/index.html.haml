@@ -3,14 +3,17 @@
 = link_to new_main_event_path, :class => "btn" do
   %i.icon-pencil
   Create a new event to coordinate »
-%h2
-- @main_events.each do |main_event|
-  %p
-  .well
+%br
+%br
+
+.well
+  - @main_events.each do |main_event|
     %h3= main_event.name
     = link_to "View", main_event, :class => "btn"
     = link_to 'Edit', edit_main_event_path(main_event), :class => "btn"
     = link_to 'Destroy', main_event, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+    %br
+    %br
 
 -unless @registered_events.blank?
   .well

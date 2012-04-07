@@ -11,15 +11,15 @@
 %p
   %strong Add a service to sign in with:
 - if @user.authentications.where(:provider => "twitter").empty?
-  %a.auth_provider{:href => "/auth/twitter"}
-    = image_tag "twitter_connect.png", :size => "180x30",:alt => "Twitter"
+  %a{:href => "/auth/twitter"}
+    = image_tag "sign_in_twitter.png", :size => "180x30",:alt => "Twitter"
   %br
 - if @user.authentications.where(:provider => "facebook").empty?
-  %a.auth_provider{:href => "/auth/facebook"}
-    = image_tag "fb-connect-large.png", :size => "180x30",:alt => "Facebook"
+  %a{:href => "/auth/facebook"}
+    = image_tag "sign_in_facebook.png", :size => "180x30",:alt => "Facebook"
   %br
 - if @user.authentications.where(:provider => "google").empty?
-  %a.auth_provider{:href => "/auth/google"}
-    = image_tag "google_64.png", :size => "64x64",:alt => "Google"
+  %a{:href => "/auth/google"}
+    = image_tag "sign_in_google.png", :size => "64x64",:alt => "Google"
 
 .clear
