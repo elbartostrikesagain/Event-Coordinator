@@ -1,15 +1,22 @@
+defaults: &defaults
+  use_utc: false
+  use_activesupport_time_zone: true
+
 development:
+  <<: *defaults
   host: localhost
   database: event_coordinator_development
   identity_map_enabled: true
 
 test:
+  <<: *defaults
   host: localhost
   database: event_coordinator_test
   identity_map_enabled: true
 
 # set these environment variables on your prod server
 production:
+  <<: *defaults
   uri: <%= ENV['MONGOHQ_URL'] %>
   identity_map_enabled: true
   #host: <%= ENV['MONGOID_HOST'] %>

@@ -18,6 +18,8 @@ module NavigationHelpers
       '/users/sign_in'
     when /main events page/
       '/main_events'
+    when /the main event's home page/
+      "/main_events/#{@main_event.id}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

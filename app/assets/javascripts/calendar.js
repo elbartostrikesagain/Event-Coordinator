@@ -5,6 +5,10 @@ $(document).ready(function() {
 	var m = date.getMonth();
 	var y = date.getFullYear();
     var event_path = $.trim($('#main_event_events_path').html())
+    var start_date = $.trim($('#first_event_date').html()).split("/")
+    var start_month = start_date[0]
+    var start_day = start_date[1]
+    var start_year = start_date[2]
 
 	$('#calendar').fullCalendar({
 
@@ -14,11 +18,10 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        //TODO: load setting from rails
         defaultView: $.trim($("#calendar_view").html()),
-        month: 4, 
-        date: 25,
-        year: 2012,
+        month: start_month,
+        date: start_day,
+        year: start_year,
         height: 500,
         slotMinutes: 15,
 

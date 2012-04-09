@@ -5,6 +5,7 @@ class CalendarController < ApplicationController
   def index
     @main_event = MainEvent.find(params[:main_event_id])
     @events_path = main_event_event_path(params[:main_event_id])
+    @first_event_date = @main_event.first_event_date
   end
 
 end

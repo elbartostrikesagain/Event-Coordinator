@@ -27,10 +27,12 @@ end
 
 Given /^I am logged in$/ do
   sign_up valid_user
+  @current_user = User.first
 end
 
 Given /^I exist as a user$/ do
   sign_up valid_user
+  @current_user = User.first
   visit '/users/sign_out'
 end
 
