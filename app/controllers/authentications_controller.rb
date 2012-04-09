@@ -43,6 +43,12 @@ class AuthenticationsController < ApplicationController
     #redirect_to authentications_url
   end
 
+  def failure
+    Rails.logger.error "Oauth error. params-> #{params}"
+    flash[:error] = "There has been an error logging you in. Try logging out of whatever service you are trying to login with and then try again. If all else fails use the forgot password feature and we will send you a new password."
+    redirect_to new_user_session_path
+  end
+
   protected
 
   # This is necessary since Rails 3.0.4

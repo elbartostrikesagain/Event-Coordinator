@@ -17,6 +17,7 @@ EventCoordinator::Application.routes.draw do
   post "main_events/:id/unregister" => "main_events#unregister", :as => :unregister_for_main_event
 
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/auth/failure' => 'authentications#failure'
   resources :authentications
 
   #get "main_events/:main_event_id/events" => "events#index", :as => :events

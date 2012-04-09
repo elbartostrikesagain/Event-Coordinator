@@ -35,3 +35,9 @@ Factory.define :event do |e|
   e.main_event {Factory.create :main_event}
 end
 
+#### Authentication ####
+Factory.define :authentication do |a|
+  a.user {Factory.create :user}
+  a.provider "twitter"
+  a.uid "115769842"
+end

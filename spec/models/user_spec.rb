@@ -67,19 +67,29 @@ describe User do
   describe "password validations" do
 
     it "should require a password" do
-      User.new(@attr.merge(:password => "", :password_confirmation => "")).
-        should_not be_valid
+      User.new(@attr.merge(:password => "", :password_confirmation => "")).should_not be_valid
     end
 
     it "should require a matching password confirmation" do
-      User.new(@attr.merge(:password_confirmation => "invalid")).
-        should_not be_valid
+      User.new(@attr.merge(:password_confirmation => "invalid")).should_not be_valid
     end
     
     it "should reject short passwords" do
       short = "a" * 5
       hash = @attr.merge(:password => short, :password_confirmation => short)
       User.new(hash).should_not be_valid
+    end
+
+    it "should require a password when a user has no oauth authentication" do
+      user = User.new(@attr.merge(:password => nil, :password_confirmation => nil))
+      user.authentications = []
+      user.should_not be_valid
+    end
+
+    it "should not require a password for a user with oauth authentication" do
+      user = User.new(@attr.merge(:password => nil, :password_confirmation => nil))
+      user.authentications << Factory.create(:authentication, user: user)
+      user.should be_valid
     end
     
   end
