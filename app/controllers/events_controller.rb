@@ -8,6 +8,7 @@ class EventsController < ApplicationController
     # appropriate month/week/day.  It should be possiblt to change
     # this to be starts_at and ends_at to match rails conventions.
     # I'll eventually do that to make the demo a little cleaner.
+    @main_event = MainEvent.find(params[:main_event_id])
     @events = Event.scoped
     #@events = @events.after(params['start']) if (params['start'])
     #@events = @events.before(params['end']) if (params['end'])
@@ -110,7 +111,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(show_events_path(main_event)) }
+      format.html { redirect_to(main_event_event_path(main_event)) }
       format.xml  { head :ok }
     end
   end
@@ -120,7 +121,7 @@ class EventsController < ApplicationController
     event.users << current_user
     #event.main_event.users << current_user
     event.save!
-    redirect_to show_events_path(event.main_event)
+    redirect_to main_event_event_path(event.main_event)
   end
 
   def unregister
@@ -128,7 +129,7 @@ class EventsController < ApplicationController
     user_count = event.users.where(_id: current_user.id).all.count
     event.user_ids.delete(current_user.id) if user_count > 0
     event.save!
-    redirect_to show_events_path(event.main_event)
+    redirect_to main_event_event_path(event.main_event)
   end
 
 end

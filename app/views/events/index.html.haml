@@ -1,26 +1,28 @@
-%h1 Listing events
+= render :partial => "main_events/event_header"
+-if can? :update, @main_event
+  = link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+%h3 Calendar events
 %table.table.table-bordered.table-striped
   %tr
     %th Title
-    %th Starts at
-    %th Ends at
-    %th All day
+    %th Time frame
+
     %th Description
-    %th Workers needed
-    %th
-    %th
+    %th Sign up/Full
+    -if can? :update, @main_event
+      %th
+      %th
   - @events.each do |event|
     %tr
-      %td= event.title
-      %td= event.starts_at
-      %td= event.ends_at
-      %td= event.all_day
+      %td= link_to event.title, main_event_event_path(event.main_event, event)
+      %td= format_event_time_frame(event)
       %td= event.description
-      %td= difference(event.num_users, event.users.count)
-      %td= link_to 'Show', main_event_event_path(event.main_event, event)
-      %td= link_to 'Edit', edit_main_event_event_path(event.main_event, event)
-      /%td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
-%br/
-= link_to 'view calendar', calendar_path(@events.first.main_event) if @events.first
-%br/
-= link_to 'New Event', new_main_event_event_path
+      -if current_user && current_user.registered_for?(event)
+        %td= link_to 'Unregister', unregister_from_event_path(event.id)
+      -elsif difference(event.num_users, event.users.count) == 0
+        %td= 'Full'
+      -else
+        %td= link_to 'Sign up', sign_up_for_event_path(event.id)
+      -if can? :update, event
+        %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
+        %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete

@@ -1,6 +1,6 @@
 class MainEventsController < ApplicationController
   load_and_authorize_resource
-  skip_authorize_resource :only => [:show, :show_events]
+  skip_authorize_resource :only => [:show]
 
   # GET /main_events
   # GET /main_events.json
@@ -27,11 +27,6 @@ class MainEventsController < ApplicationController
       format.js  { render :json => @events }
     end
 
-  end
-
-  def show_events
-    @main_event = MainEvent.find(params[:id])
-    @events = Event.where(main_event_id: @main_event.id)
   end
 
   # GET /main_events/new
