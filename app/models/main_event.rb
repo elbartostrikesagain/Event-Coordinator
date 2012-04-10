@@ -12,6 +12,6 @@ class MainEvent
   def first_event_date
     first_event = self.events.order_by([:starts_at, :asc]).first
     return first_event.starts_at.in_time_zone.strftime("%m/%d/%Y") unless first_event.nil? || first_event.starts_at.nil?
-    " / / " #blank string for javascript to not choke on
+    Time.current.strftime("%m/%d/%Y")
   end
 end

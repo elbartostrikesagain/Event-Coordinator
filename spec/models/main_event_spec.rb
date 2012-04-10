@@ -5,7 +5,7 @@ describe MainEvent do
   describe "first event date" do
     context "doesnt have events" do
       it "returns a blank date" do
-        main_event.first_event_date.should == " / / "
+        main_event.first_event_date.should == Time.current.strftime("%m/%d/%Y")
       end
     end
     context "has events" do

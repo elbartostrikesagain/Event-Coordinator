@@ -106,10 +106,11 @@ class EventsController < ApplicationController
   # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
+    main_event = @event.main_event
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url) }
+      format.html { redirect_to(show_events_path(main_event)) }
       format.xml  { head :ok }
     end
   end

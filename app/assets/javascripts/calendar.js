@@ -4,11 +4,11 @@ $(document).ready(function() {
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
-    var event_path = $.trim($('#main_event_events_path').html())
-    var start_date = $.trim($('#first_event_date').html()).split("/")
-    var start_month = start_date[0]
-    var start_day = start_date[1]
-    var start_year = start_date[2]
+    var event_path = $.trim($('#main_event_events_path').html());
+    var start_date = $.trim($('#first_event_date').html()).split("/");
+    var start_month = parseInt(start_date[0]) -1;
+    var start_day = parseInt(start_date[1]);
+    var start_year = parseInt(start_date[2]);
 
 	$('#calendar').fullCalendar({
 
