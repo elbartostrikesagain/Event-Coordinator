@@ -7,7 +7,7 @@
     %b All day-
     %b= @event.starts_at.strftime("%a, %b %d, %Y")
   -else
-    %b= @event.starts_at.to_s + "-" + @event.ends_at.to_s
+    %b= @event.starts_at.strftime("%I:%M%p %m/%d/%Y") + " - " + @event.ends_at.strftime("%I:%M%p %m/%d/%Y")
   %p
     %b Workers:
     -@event.users.each_with_index do |user, i|
