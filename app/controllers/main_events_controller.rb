@@ -92,7 +92,7 @@ class MainEventsController < ApplicationController
   
   def register
     main_event = MainEvent.find(params[:id])
-    main_event.workers << current_user if current_user && current_user.registered_for?(main_event)
+    main_event.workers << current_user if current_user && !current_user.registered_for?(main_event)
     if main_event.save!
       redirect_to main_event, notice: "You are now registered for #{main_event.name}"
     else
@@ -112,7 +112,7 @@ class MainEventsController < ApplicationController
       end
     end
     user_count = main_event.workers.where(_id: current_user.id).all.count
-    main_event.user_ids.delete(current_user.id) if user_count > 0
+    main_event.workers.delete(current_user) if user_count > 0
     if main_event.save!
       redirect_to main_event, notice: "Succesfully unregistered for #{main_event.name}"
     else

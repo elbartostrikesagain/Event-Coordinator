@@ -110,4 +110,32 @@ describe User do
 
   end
 
+  describe "registered_for?" do
+    let(:user) {Factory.create :user}
+    context "main event" do
+      it "should return true if a user is registered for a main event" do
+        main_event = Factory.create(:main_event)
+        main_event.workers << user
+        main_event.save!
+        user.registered_for?(main_event).should be_true
+      end
+      it "should return false if a user is not registered for a main event" do
+        main_event = Factory.create(:main_event)
+        user.registered_for?(main_event).should be_false
+      end
+    end
+    context "event" do
+      it "should return true if a user is registered for an event" do
+        event = Factory.create(:event)
+        event.users << user
+        event.save!
+        user.registered_for?(event).should be_true
+      end
+      it "should return false if a user is not registered for an event" do
+        event = Factory.create(:event)
+        user.registered_for?(event).should be_false
+      end
+    end
+  end
+
 end

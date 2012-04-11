@@ -58,7 +58,7 @@ class User
       false
     end
     if event.is_a?(MainEvent)
-      return true if event.workers.any_in(workers: [self.id]).count == 0
+      return true if event.workers.where(_id: self.id).count > 0
     end
     false
   end
