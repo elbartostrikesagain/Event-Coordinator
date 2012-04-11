@@ -119,7 +119,7 @@ class EventsController < ApplicationController
   def sign_up
     event = Event.find(params[:id])
     event.users << current_user
-    #event.main_event.users << current_user
+    event.main_event.workers << current_user unless current_user.registered_for?(event.main_event)
     event.save!
     redirect_to main_event_event_index_path(event.main_event)
   end

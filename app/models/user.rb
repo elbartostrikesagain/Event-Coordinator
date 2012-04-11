@@ -66,7 +66,11 @@ class User
   def apply_omniauth(omniauth)
     self.email = omniauth['info']['email'] if email.blank?
     self.name = omniauth['info']['name'] if name.blank?
-    self.authentications << authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+
+    auth = Authentication.find_or_create_by(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    auth.user = self
+    auth.save!
+    self.authentications << auth
   end
 
   def password_required?

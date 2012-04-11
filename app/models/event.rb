@@ -38,4 +38,8 @@ class Event
     Time.at(date_time.to_i).to_formatted_s(:db)
   end
 
+  def needs_workers?
+    return self.num_users.to_i > self.users.count
+  end
+
 end

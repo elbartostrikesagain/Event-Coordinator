@@ -28,6 +28,8 @@ class RegistrationsController < Devise::RegistrationsController
   def build_resource(*args)
     super
     if session[:omniauth]
+      @user = User.first(conditions: {email: session[:omniauth][:info][:email]})
+      @user = User.new if @user.nil?
       @user.apply_omniauth(session[:omniauth])
       if @user.valid?
         @user.authentications.last.save!

@@ -1,5 +1,4 @@
 = render :partial => "main_events/event_header"
-%p#notice= notice
 = link_to 'Edit', edit_main_event_event_path(@event.main_event, @event), :class => 'btn btn-primary' if can? :update, @event
 %div.well
   %h2= @event.title
@@ -10,6 +9,8 @@
     %b= @event.starts_at.strftime("%I:%M%p %m/%d/%Y") + " - " + @event.ends_at.strftime("%I:%M%p %m/%d/%Y")
   %p
     %b Workers:
+    -if !(current_user && current_user.registered_for?(@event)) && @event.needs_workers?
+      =link_to '(Sign up)', sign_up_for_event_path(@event.id)
     -@event.users.each_with_index do |user, i|
       =link_to user.name, user
       = ", " unless @event.users.length - 1 == i
