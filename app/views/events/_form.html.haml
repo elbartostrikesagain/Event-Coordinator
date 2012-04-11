@@ -18,22 +18,22 @@
       .controls
         = f.number_field :num_users, :in => 0..20
         %p.help-block 20 max
-    TODO: change to js datetime picker
+    .control-group
+      = f.label :starts_at, class: 'control-label'
+      .controls
+        %input#starts_at{:name => "starts_at", :type => "text", :value => ""}/
+    .control-group
+      = f.label :ends_at, class: 'control-label'
+      .controls
+        %input#ends_at{:name => "ends_at", :type => "text", :value => ""}/
+    .control-group
+      = f.label :all_day, class: 'control-label'
+      .controls
+        = f.check_box :all_day
+      .help-block (Times will be irrelevant and events will show at the top of the calendar in the all day section)
     .field
-      = f.label :starts_at
-      %br/
-      = f.datetime_select :starts_at
-    .field
-      = f.label :ends_at
-      %br/
-      = f.datetime_select :ends_at
-      .control-group
-        = f.label :all_day, class: 'control-label'
-        .controls
-          = f.check_box :all_day
-    .field
-      = f.label :description
-      %br/
-      = f.text_area :description, :style => "width: 800px;"
+      = f.label "Description(HTML)"
+      = f.text_area :description, :style => "width: 920px;"
     .actions
-      = f.submit "Save", class: 'btn'
+      %br
+      = f.submit "Save", class: 'btn btn-primary'

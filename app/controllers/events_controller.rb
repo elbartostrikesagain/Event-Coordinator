@@ -57,8 +57,8 @@ class EventsController < ApplicationController
   def create
     main_event = MainEvent.find(params[:main_event_id])
     params[:event][:main_event_id] = params[:main_event_id]
-    params[:event][:starts_at] = Time.parse(params[:event]["starts_at(1i)"] + '-' + params[:event]["starts_at(2i)"] + '-' + params[:event]["starts_at(3i)"] + ' ' + params[:event]["starts_at(4i)"] + ':' + params[:event]["starts_at(5i)"])
-    params[:event][:ends_at] = Time.parse(params[:event]["ends_at(1i)"] + '-' + params[:event]["ends_at(2i)"] + '-' + params[:event]["ends_at(3i)"] + ' ' + params[:event]["ends_at(4i)"] + ':' + params[:event]["ends_at(5i)"])
+    params[:event][:starts_at] = Time.strptime(params[:starts_at], '%m/%d/%Y %I:%M %p')
+    params[:event][:ends_at] = Time.strptime(params[:ends_at], '%m/%d/%Y %I:%M %p')
     params[:event][:all_day] =  params[:event][:all_day] == "0"? false : true
     (1..5).each do |i|
       params[:event].delete("starts_at(#{i}i)")
@@ -111,7 +111,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(main_event_event_path(main_event)) }
+      format.html { redirect_to(main_event_event_index_path(main_event)) }
       format.xml  { head :ok }
     end
   end
@@ -121,7 +121,7 @@ class EventsController < ApplicationController
     event.users << current_user
     #event.main_event.users << current_user
     event.save!
-    redirect_to main_event_event_path(event.main_event)
+    redirect_to main_event_event_index_path(event.main_event)
   end
 
   def unregister
@@ -129,7 +129,7 @@ class EventsController < ApplicationController
     user_count = event.users.where(_id: current_user.id).all.count
     event.user_ids.delete(current_user.id) if user_count > 0
     event.save!
-    redirect_to main_event_event_path(event.main_event)
+    redirect_to main_event_event_index_path(event.main_event)
   end
 
 end

@@ -75,7 +75,7 @@ class User
   end
 
   def has_authentication
-    unless (authentications.present? || password.present?)
+    unless (authentications.present? || encrypted_password.present?)
       errors.add(:base, "Password or authentication is required.")
     end
   end

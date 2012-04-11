@@ -13,6 +13,7 @@ describe MainEvent do
         event2 = Factory.create(:event, main_event: main_event, starts_at: Time.now)
         event1 = Factory.create(:event, main_event: main_event, starts_at: Time.now - 1.day)
         main_event.events = [event2, event1]
+        event1.reload
         main_event.first_event_date.should == event1.starts_at.strftime("%m/%d/%Y")
       end
     end
