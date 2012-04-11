@@ -12,7 +12,7 @@ class AuthenticationsController < ApplicationController
       sign_in authentication.user
       redirect_to session[:return_to] || main_events_path
     elsif current_user
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :user => self)
+      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :user => current_user)
       flash[:notice] = "Authentication successful."
       redirect_to edit_user_registration_path
       #redirect_to authentications_url
