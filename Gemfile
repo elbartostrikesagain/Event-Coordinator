@@ -10,9 +10,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :assets do
+#group :assets do
   gem 'jquery-rails'
-end
+#end
 
 gem "haml", ">= 3.1.4"
 gem "haml-rails", ">= 0.3.4", :group => :development
