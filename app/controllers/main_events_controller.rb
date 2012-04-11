@@ -107,7 +107,7 @@ class MainEventsController < ApplicationController
     users_events.each do |event|
       if event.main_event.id == main_event.id
         flash[:error] = "Please unregister from all events you are working before unregistering from #{main_event.name}"
-        redirect_to main_event
+        redirect_to main_event_event_index_path(main_event)
         return
       end
     end
