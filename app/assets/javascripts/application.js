@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.rest
 //= require bootstrap
 //= require setup
 // require_tree .
