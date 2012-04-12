@@ -49,6 +49,8 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @event_start = @event.starts_at.strftime('%m/%d/%Y %I:%M %p')
+    @event_end = @event.ends_at.strftime('%m/%d/%Y %I:%M %p')
     redirect_to main_event_event_path(@event.main_event, @event) unless can? :update, @event
   end
 
@@ -86,8 +88,8 @@ class EventsController < ApplicationController
   # viv la REST!
   def update
     @event = Event.find(params[:id])
-    params[:event][:starts_at] = Time.parse(params[:event]["starts_at(1i)"] + '-' + params[:event]["starts_at(2i)"] + '-' + params[:event]["starts_at(3i)"] + ' ' + params[:event]["starts_at(4i)"] + ':' + params[:event]["starts_at(5i)"])
-    params[:event][:ends_at] = Time.parse(params[:event]["ends_at(1i)"] + '-' + params[:event]["ends_at(2i)"] + '-' + params[:event]["ends_at(3i)"] + ' ' + params[:event]["ends_at(4i)"] + ':' + params[:event]["ends_at(5i)"])
+    params[:event][:starts_at] = Time.strptime(params[:starts_at], '%m/%d/%Y %I:%M %p')
+    params[:event][:ends_at] = Time.strptime(params[:ends_at], '%m/%d/%Y %I:%M %p')
     params[:event][:all_day] =  params[:event][:all_day] == "0"? false : true
 
     respond_to do |format|

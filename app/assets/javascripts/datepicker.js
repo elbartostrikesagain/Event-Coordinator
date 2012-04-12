@@ -8,3 +8,25 @@ $(function() {
         ampm: true
     });
 });
+
+
+$(document).ready(function() {
+    var dateFormat = /\d?\d\/\d?\d\/\d\d\d\d \d?\d:\d\d (AM|PM|am|pm)/
+    $('#formSubmit').click(function() {
+        var errors = false;
+        if(!dateFormat.test($('#starts_at').attr('value'))){
+            $('#starts_at').parent().parent().addClass('error');
+            errors = true;
+        }else
+            $('#starts_at').parent().parent().removeClass('error')
+        if(!dateFormat.test($('#ends_at').attr('value'))){
+            $('#ends_at').parent().parent().addClass('error')
+        errors = true;
+        }else
+            $('#ends_at').parent().parent().removeClass('error')
+        if(errors)
+            $('#formError').show();
+        else
+            $('.eventForm').submit();
+    });
+});

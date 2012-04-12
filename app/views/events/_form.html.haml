@@ -1,4 +1,4 @@
-= form_for([:main_event, @event], :url => url, html: {class: 'form-horizontal'}) do |f|
+= form_for([:main_event, @event], :url => url, html: {class: 'form-horizontal eventForm'}) do |f|
   %legend
   %fieldset
     - if @event.errors.any?
@@ -21,11 +21,11 @@
     .control-group
       = f.label :starts_at, class: 'control-label'
       .controls
-        %input#starts_at{:name => "starts_at", :type => "text", :value => ""}/
+        %input#starts_at{:name => "starts_at", :type => "text", :value => @event_start}/
     .control-group
       = f.label :ends_at, class: 'control-label'
       .controls
-        %input#ends_at{:name => "ends_at", :type => "text", :value => ""}/
+        %input#ends_at{:name => "ends_at", :type => "text", :value => @event_end}/
     .control-group
       = f.label :all_day, class: 'control-label'
       .controls
@@ -36,4 +36,7 @@
       = f.text_area :description, :style => "width: 920px;"
     .actions
       %br
-      = f.submit "Save", class: 'btn btn-primary'
+      .alert.alert-error#formError{:style => "display:none;"}
+        %a.close{"data-dismiss" => "alert"} ×
+        Change a few things up and try submitting again.
+      = link_to "Save", "#", class: 'btn btn-primary', id: 'formSubmit'
