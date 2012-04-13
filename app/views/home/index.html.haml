@@ -3,20 +3,24 @@
     .span12
       .hero-unit
         %h1 Easy Event Management
+      .page-header
+        %h2 Event Coordinators:
       .row-fluid
         .span4
-          %h3 1. Add events to your calendar
-          %p  For each thing happening at your event, create an event on your calendar.
-          %p
-        .span4
-          %h3 2. Create a html page
+          %h3 1. Create a html page
           %p  Add an faq, map and other event details your volunteers and works need to know about.
           %p
             =render :partial => "settings_help_modal"
         .span4
+          %h3 2. Add events to your calendar
+          %p  For each thing happening at your event, create an event on your calendar.
+          %p
+        .span4
           %h3 3. Share the event
           %p  Share your Event Coordinator event with your workers and volunteers.
           %p
+      .page-header
+        %h2 Event Workers/Volunteers:
       .row-fluid
         .span4
           %h3 1. Read about event information
