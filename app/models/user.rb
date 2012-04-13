@@ -3,7 +3,7 @@ class User
 
   has_many :main_events
   has_many :events
-  has_many :authentications
+  has_many :authentications, :dependent => :destroy
 
   belongs_to :registered_main_events, class_name: "MainEvent", inverse_of: "workers"
   
