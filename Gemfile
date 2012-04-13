@@ -56,3 +56,5 @@ gem "omniauth-google"
 gem "bootstrap-sass", "~> 2.0.0"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
+
+gem "kaminari"

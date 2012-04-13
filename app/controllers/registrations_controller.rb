@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     session[:omniauth] = nil unless @user.new_record?
     @user.email = params[:user][:email]
-    @user.save!
+    @user.save! if session[:omniauth].present?
   end
 
   def update

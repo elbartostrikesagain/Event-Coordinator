@@ -11,6 +11,5 @@ Feature: New Event
       And I fill in "starts_at" with "04/13/2012 01:27 am"
       And I fill in "ends_at" with "04/13/2012 01:27 am"
       And I follow "Save"
-      And show me the page
       Then I should see "yay"
       And I should see "Event was successfully created."
