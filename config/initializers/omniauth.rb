@@ -7,5 +7,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"]
   #provider :openid, nil, :name => 'google_apps', :identifier => 'https://www.google.com/accounts/o8/id'
   #provider :open_id, :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
-  provider :google, "anonymous", "anonymous"
+  provider :google, ENV["GOOGLE_KEY"], ENV["GOOGLE_SECRET"]#"anonymous", "anonymous"
+  #provider :google_oauth2, ENV["GOOGLE_KEY"], ENV["GOOGLE_SECRET"], {access_type: 'online', approval_prompt: ''}
 end

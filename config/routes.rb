@@ -17,6 +17,7 @@ EventCoordinator::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
+  match '/google1a1eff988923f33a', :to => redirect('/google1a1eff988923f33a.html')
   resources :authentications
 
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
