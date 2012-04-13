@@ -11,8 +11,8 @@ $(document).ready(function() {
     var start_year = parseInt(start_date[2]);
 
 	$('#calendar').fullCalendar({
-
-  editable: true,
+  theme: true,
+  editable: false,
   header: {
             left: 'prev,next today',
             center: 'title',
@@ -35,28 +35,26 @@ $(document).ready(function() {
         // a future calendar might have many sources.
         eventSources: [{
             url: event_path,
-            color: 'yellow',
-            textColor: 'black',
             ignoreTimezone: true
         }],
 
-        timeFormat: 'h:mm t{ - h:mm t} ',
-        dragOpacity: "0.5",
+        timeFormat: 'h:mm t{ - h:mm t} '
+        //dragOpacity: "0.5",
 
         //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
-        eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
-            updateEvent(event, event_path);
-        },
+        //eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+        //    updateEvent(event, event_path);
+        //},
 
         // http://arshaw.com/fullcalendar/docs/event_ui/eventResize/
-        eventResize: function(event, dayDelta, minuteDelta, revertFunc){
-            updateEvent(event, event_path);
-        },
+        //eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+        //    updateEvent(event, event_path);
+        //},
 
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
-        eventClick: function(event, jsEvent, view){
+        //eventClick: function(event, jsEvent, view){
           // would like a lightbox here.
-        }
+        //}
 	});
 });
 

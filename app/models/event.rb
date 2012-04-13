@@ -21,12 +21,13 @@ class Event
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
   def as_json(options = {})
+    time_offset = Rails.env.production? ? 6 : 0
     {
       :id => self.id,
       :title => self.title,
       :description => self.description || "",
-      :start => (starts_at).to_datetime.rfc822,
-      :end => (ends_at).to_datetime.rfc822,
+      :start => (starts_at + time_offset).to_datetime.rfc822,
+      :end => (ends_at + time_offset).to_datetime.rfc822,
       :allDay => self.all_day,
       :recurring => false,
       :url => Rails.application.routes.url_helpers.main_event_event_path(self.main_event.id, id)
