@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     @events = Event.scoped
     #@events = @events.after(params['start']) if (params['start'])
     #@events = @events.before(params['end']) if (params['end'])
-    @events = @events.where(main_event_id: params[:main_event_id]).order_by([:starts_at, :asc])
+    @events = @events.where(main_event_id: params[:main_event_id]).order_by([:starts_at, :asc]).page(params[:page]).per(20)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }

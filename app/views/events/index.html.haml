@@ -2,6 +2,7 @@
 -if can? :update, @main_event
   = link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
 %h3 Calendar events
+= paginate @events
 %table.table.table-bordered.table-striped
   %tr
     %th Title
@@ -26,3 +27,4 @@
       -if can? :update, event
         %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
         %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
+= paginate @events

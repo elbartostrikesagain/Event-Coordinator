@@ -6,6 +6,7 @@ class AdminController < ApplicationController
       flash[:error] = "We require more vespene gas."
       redirect_to @main_event
     end
+    @users = @main_event.workers.page(params[:page]).per(20)
   end
 
 end

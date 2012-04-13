@@ -5,9 +5,10 @@
     %th Name
     %th Email
     %th Total Hours
-  - @main_event.workers.each do |user|
+  - @users.each do |user|
     %tr
       %td= user.name
       %td= user.email
       /TODO: SLOW
       %td= "#{pluralize(user.event_hours(@main_event)[:hours], 'hour')}, #{pluralize(user.event_hours(@main_event)[:minutes], 'minute')}"
+= paginate @users
