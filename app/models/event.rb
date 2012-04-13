@@ -21,7 +21,7 @@ class Event
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
   def as_json(options = {})
-    time_offset = Rails.env.production? ? 6 : 0
+    time_offset = 6
     {
       :id => self.id,
       :title => self.title,
