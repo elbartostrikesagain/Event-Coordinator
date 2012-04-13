@@ -1,0 +1,13 @@
+= render :partial => "main_events/event_header"
+%h2 Workers
+%table.table.table-bordered.table-striped
+  %tr
+    %th Name
+    %th Email
+    %th Total Hours
+  - @main_event.workers.each do |user|
+    %tr
+      %td= user.name
+      %td= user.email
+      /TODO: SLOW
+      %td= "#{pluralize(user.event_hours(@main_event)[:hours], 'hour')}, #{pluralize(user.event_hours(@main_event)[:minutes], 'minute')}"

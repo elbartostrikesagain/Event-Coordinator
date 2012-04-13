@@ -43,4 +43,8 @@ class Event
     return self.num_users.to_i > self.users.count
   end
 
+  def length
+    self.ends_at - self.starts_at
+  end
+
 end

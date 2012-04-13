@@ -10,3 +10,5 @@
       %li= link_to(raw("<i class='icon-minus-sign'></i> Unregister"), unregister_for_main_event_path(@main_event))
     -else
       %li= link_to(raw("<i class='icon-plus-sign'></i> Register"), register_for_main_event_path(@main_event))
+    -if can? :manage, @main_event
+      =tab "Admin", admin_main_event_path(@main_event)

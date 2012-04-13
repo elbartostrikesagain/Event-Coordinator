@@ -15,10 +15,14 @@ EventCoordinator::Application.routes.draw do
   get "main_events/:id/register" => "main_events#register", :as => :register_for_main_event
   get "main_events/:id/unregister" => "main_events#unregister", :as => :unregister_for_main_event
 
+  get "main_events/:id/admin" => "admin#index", :as => :admin_main_event
+
+  #oauth
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
-  match '/google1a1eff988923f33a', :to => redirect('/google1a1eff988923f33a.html')
   resources :authentications
+  #google auth site verification
+  match '/google1a1eff988923f33a', :to => redirect('/google1a1eff988923f33a.html')
 
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
   #post "main_events/:main_event_id/events" => "events#create", :as => :create_event

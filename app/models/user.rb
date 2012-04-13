@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
 
   has_many :main_events
-  has_many :events
+  has_and_belongs_to_many :events
   has_many :authentications, :dependent => :destroy
 
   belongs_to :registered_main_events, class_name: "MainEvent", inverse_of: "workers"
@@ -82,6 +82,17 @@ class User
     unless (authentications.present? || encrypted_password.present?)
       errors.add(:base, "Password or authentication is required.")
     end
+  end
+
+  def event_hours(main_event)
+    time = 0
+    self.events.where(main_event_id: main_event.id).each do |event|
+      time += event.length.to_i
+    end
+    hours = (time/3600).to_i
+    time -= hours * 3600
+    minutes = (time/60).to_i
+    {minutes: minutes, hours: hours}
   end
 
 end
