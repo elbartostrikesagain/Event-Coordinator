@@ -2,8 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     session[:omniauth] = nil unless @user.new_record?
-    #@user.name = params[:name]
-    #@user.save!
+    @user.email = params[:user][:email]
+    @user.save!
   end
 
   def update
@@ -28,13 +28,11 @@ class RegistrationsController < Devise::RegistrationsController
   def build_resource(*args)
     super
     if session[:omniauth]
-      @user = User.first(conditions: {email: session[:omniauth][:info][:email]})
-      @user = User.new if @user.nil?
+      #@user = User.first(conditions: {email: session[:omniauth][:info][:email]})
+      @user = Authentication.first(conditions: {uid: session[:omniauth][:uid]}).user
+      @user = User.new(email: session[:omniauth][:info][:email], name: session[:omniauth][:info][:name]) if @user.nil?
       @user.apply_omniauth(session[:omniauth])
-      if @user.valid?
-        @user.authentications.last.save!
-        @user.save!
-      end
+      @user.authentications.last.save!
     end
   end
 end

@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.where(provider: omniauth['provider'], uid: omniauth['uid']).first
-    if authentication
+    if authentication && authentication.user.present?
       flash[:notice] = "Signed in successfully."
       #sign_in_and_redirect(:user, authentication.user)
       sign_in authentication.user
