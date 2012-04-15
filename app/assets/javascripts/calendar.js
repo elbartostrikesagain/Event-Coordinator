@@ -22,8 +22,8 @@ $(document).ready(function() {
         month: start_month,
         date: start_day,
         year: start_year,
-        height: 500,
-        slotMinutes: 15,
+        height: 700,
+        //slotMinutes: 15,
 
         loading: function(bool){
             if (bool)
