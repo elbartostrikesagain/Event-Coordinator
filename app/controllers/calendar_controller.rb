@@ -14,7 +14,7 @@ class CalendarController < ApplicationController
   def events
     @main_event = MainEvent.find(params[:main_event_id])
     @events = Event.scoped
-    @events = @events.where(main_event_id: params[:main_event_id]).order_by([:starts_at, :asc]).page(params[:page]).per(20)
+    @events = @events.where(main_event_id: params[:main_event_id]).order_by([:starts_at, :asc])
     respond_to do |format|
       format.xml  { render :xml => @events }
       format.js  { render :json => @events }
