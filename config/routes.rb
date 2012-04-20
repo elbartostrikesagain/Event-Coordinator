@@ -9,6 +9,7 @@ EventCoordinator::Application.routes.draw do
     resources :events, :as => :event
   end
   get "main_events/:main_event_id/calender" => "calendar#index", :as => :calendar
+  get "main_events/:main_event_id/calender/events" => "calendar#events", :as => :calendar_events
   get "events/:id/sign_up" => "events#sign_up", :as => :sign_up_for_event
   get "events/:id/unregister" => "events#unregister", :as => :unregister_from_event
 
