@@ -12,5 +12,6 @@
           %td= link_to event.title, main_event_event_path(event.main_event, event)
           %td= format_event_time_frame(event)
           %td= event.description
+  = paginate @users_events
 -else
   %h3 #{@user.name} doesn't have any public shifts
