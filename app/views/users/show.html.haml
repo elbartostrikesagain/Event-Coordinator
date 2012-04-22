@@ -1,12 +1,14 @@
 -if @users_events.present?
-  -@users_events.each do |event|
-    %h3 #{@user.name}'s public shifts
-    %table.table.table-bordered.table-striped
+  %h3 #{@user.name}'s public shifts
+  %table.table.table-bordered.table-striped
+    %thead
       %tr
         %th Title
         %th Time frame
         %th Description
         %th
+    %tbody
+      -@users_events.each do |event|
         %tr
           %td= link_to event.title, main_event_event_path(event.main_event, event)
           %td= format_event_time_frame(event)
