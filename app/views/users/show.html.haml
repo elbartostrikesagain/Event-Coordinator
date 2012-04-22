@@ -1,4 +1,16 @@
-%p
-  User: #{@user.name}
-%p
-  Email: #{@user.email if @user.email}
+-if @users_events.present?
+  -@users_events.each do |event|
+    %h3 #{@user.name}'s public shifts
+    %table.table.table-bordered.table-striped
+      %tr
+        %th Title
+        %th Time frame
+        %th Description
+        %th
+        %tr
+          %td= link_to event.title, main_event_event_path(event.main_event, event)
+          %td= format_event_time_frame(event)
+          %td= event.description
+          %td= link_to 'Unregister', unregister_from_event_path(event.id)
+-else
+  %h3 #{@user.name} doesn't have any public shifts

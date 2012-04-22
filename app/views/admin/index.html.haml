@@ -7,7 +7,7 @@
     %th Total Hours
   - @users.each do |user|
     %tr
-      %td= user.name
+      %td= link_to user.name, user
       %td= user.email
       /TODO: SLOW
       %td= "#{pluralize(user.event_hours(@main_event)[:hours], 'hour')}, #{pluralize(user.event_hours(@main_event)[:minutes], 'minute')}"
