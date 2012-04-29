@@ -11,12 +11,12 @@ class Event
   scope :before, lambda {|end_time| where(:ends_at.lt => Event.format_date(end_time)) }
   scope :after, lambda {|start_time| where(:starts_at.gt => Event.format_date(start_time)) }
 
-  field :title, :field => String
-  field :starts_at, :field => DateTime
-  field :ends_at, :field => DateTime
-  field :all_day, :field => Boolean
-  field :description, :field => String
-  field :num_users, :field => Integer
+  field :title, :type => String
+  field :starts_at, :type => DateTime
+  field :ends_at, :type => DateTime
+  field :all_day, :type => Boolean
+  field :description, :type => String
+  field :num_users, :type => Integer
 
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
