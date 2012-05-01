@@ -11,6 +11,8 @@
     %th Description
     %th Sign up/Full
     -if can? :update, @main_event
+      -unless @main_event.currency.blank?
+        %th= @main_event.currency
       %th
       %th
   - @events.each do |event|
@@ -25,6 +27,8 @@
           = link_to "Sign up", sign_up_for_event_path(event.id)
         ="(#{event.users.count}/#{event.num_users})"
       -if can? :update, event
+        -unless @main_event.currency.blank?
+          %td= event.currency_rate
         %td= link_to 'Edit', edit_main_event_event_path(@main_event, event)
         %td= link_to 'Destroy', [event.main_event, event], :confirm => 'Are you sure?', :method => :delete
 = paginate @events
