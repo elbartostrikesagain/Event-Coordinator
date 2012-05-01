@@ -9,6 +9,7 @@ class CalendarController < ApplicationController
     #return
     @events_path = calendar_events_path(params[:main_event_id])
     @first_event_date = @main_event.first_event_date
+    flash[:notice] = @main_event.shifts_notice
   end
 
   def events

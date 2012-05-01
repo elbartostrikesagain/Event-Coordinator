@@ -8,6 +8,8 @@ class MainEvent
   field :name, :type => String
   field :html, :type => String
   field :default_calendar_view, :type => String
+  field :shifts_notice, :type => String
+
 
   def first_event_date
     first_event = self.events.order_by([:starts_at, :asc]).first

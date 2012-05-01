@@ -21,6 +21,10 @@
       %label.radio
         = f.radio_button(:default_calendar_view, "month")
         Month
+  .control-group
+    = f.label "List shift/Calendar notice", class: 'control-label'
+    .controls
+      = f.text_field :shifts_notice, class: 'input-xlarg', :style => "width: 800px;", :maxlength => 400
   .field
     = f.label :html
     = f.text_area :html, :style => "width: 800px;"

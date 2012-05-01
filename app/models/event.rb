@@ -42,7 +42,7 @@ class Event
   end
 
   def length
-    self.ends_at - self.starts_at
+    self.ends_at.to_i - self.starts_at.to_i
   end
 
 end
