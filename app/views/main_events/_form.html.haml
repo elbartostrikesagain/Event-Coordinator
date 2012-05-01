@@ -1,3 +1,7 @@
+= stylesheet_link_tag "jquery.cleditor.css"
+= javascript_include_tag "jquery.cleditor.js"
+= javascript_include_tag "main_events.js"
+
 = form_for @main_event do |f|
   -if @main_event.errors.any?
     #error_explanation
