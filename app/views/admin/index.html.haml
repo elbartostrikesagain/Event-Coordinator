@@ -9,7 +9,7 @@
     %th Email
     %th Total Hours
     - unless @main_event.currency.blank?
-        %th= @main_event.currency
+      %th= @main_event.currency
   - @users.each do |user|
     %tr
       %td= link_to user.name, user
