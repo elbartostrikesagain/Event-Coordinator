@@ -1,7 +1,7 @@
 = render :partial => "main_events/event_header"
 -if can? :update, @main_event
-  = link_to 'Add Event', new_main_event_event_path(@main_event), :class => "btn btn-primary"
-%h3 Calendar events
+  = link_to 'Add Shift', new_main_event_event_path(@main_event), :class => "btn btn-primary"
+%h3 Calendar Shifts
 = paginate @events
 %table.table.table-bordered.table-striped
   %tr

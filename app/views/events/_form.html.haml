@@ -19,6 +19,10 @@
         = f.number_field :num_users, :in => 0..20
         %p.help-block 20 max
     .control-group
+      = f.label "#{@event.main_event.currency}/hr", class: 'control-label'
+      .controls
+        = f.text_field :currency_rate, class: 'input-xlarg'
+    .control-group
       = f.label :starts_at, class: 'control-label'
       .controls
         %input#starts_at{:name => "starts_at", :type => "text", :value => @event_start}/

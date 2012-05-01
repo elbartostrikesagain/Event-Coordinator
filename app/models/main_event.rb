@@ -9,6 +9,7 @@ class MainEvent
   field :html, :type => String
   field :default_calendar_view, :type => String
   field :shifts_notice, :type => String
+  field :currency, :type => String
 
 
   def first_event_date

@@ -94,6 +94,14 @@ class User
     minutes = (time/60).to_i
     {minutes: minutes, hours: hours}
   end
+  
+  def currency_for(main_event)
+    currency = 0
+    self.events.where(main_event_id: main_event.id).each do |event|
+      currency += event.currency
+    end
+    currency
+  end
 
 end
 

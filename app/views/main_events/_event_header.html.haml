@@ -5,7 +5,7 @@
   %ul.nav.nav-tabs
     = tab "Home", @main_event
     = tab 'View Calendar', calendar_path(@main_event)
-    = tab 'List Events', main_event_event_index_path(@main_event)
+    = tab 'List Shifts', main_event_event_index_path(@main_event)
     -if current_user && current_user.registered_for?(@main_event)
       %li= link_to(raw("<i class='icon-minus-sign'></i> Unregister"), unregister_for_main_event_path(@main_event))
     -else

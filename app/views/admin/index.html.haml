@@ -8,10 +8,12 @@
     %th Name
     %th Email
     %th Total Hours
+    %th= @main_event.currency
   - @users.each do |user|
     %tr
       %td= link_to user.name, user
       %td= user.email
       /TODO: SLOW
       %td= "#{pluralize(user.event_hours(@main_event)[:hours], 'hour')}, #{pluralize(user.event_hours(@main_event)[:minutes], 'minute')}"
+      %td= user.currency_for(@main_event)
 = paginate @users

@@ -17,6 +17,7 @@ class Event
   field :all_day, :type => Boolean
   field :description, :type => String
   field :num_users, :type => Integer
+  field :currency_rate, :type => Float
 
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
@@ -43,6 +44,10 @@ class Event
 
   def length
     self.ends_at.to_i - self.starts_at.to_i
+  end
+  
+  def currency
+    ((self.ends_at.to_i - self.starts_at.to_i)/3600) * self.currency_rate
   end
 
 end

@@ -2,6 +2,10 @@
 = link_to 'Edit', edit_main_event_event_path(@event.main_event, @event), :class => 'btn btn-primary' if can? :update, @event
 %div.well
   %h2= @event.title
+  -if @event.currency_rate.present? && @event.currency_rate > 0
+    %b= "#{@event.main_event.currency}/hr:"
+    = @event.currency_rate
+    %br
   -if @event.all_day
     %b All day-
     %b= @event.starts_at.strftime("%a, %b %d, %Y")

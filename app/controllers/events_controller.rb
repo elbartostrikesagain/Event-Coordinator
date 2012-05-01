@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   def new
     main_event = MainEvent.find(params[:main_event_id])
     redirect_to main_event and return unless current_user && main_event.user.id == current_user.id
-    @event = Event.new
+    @event = Event.new(main_event: main_event)
 
     respond_to do |format|
       format.html # new.html.erb
