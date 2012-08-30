@@ -1,0 +1,36 @@
+# defaults: &defaults
+#   use_utc: false
+#   use_activesupport_time_zone: true
+
+# development:
+#   <<: *defaults
+#   host: localhost
+#   database: event_coordinator_development
+#   identity_map_enabled: true
+
+test:
+  sessions:
+    default:
+      database: event_coordinator_test
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
+    use_utc: false
+    use_activesupport_time_zone: true
+
+# set these environment variables on your prod server
+# production:
+#   <<: *defaults
+#   uri: <%= ENV['MONGOHQ_URL'] %>
+#   identity_map_enabled: true
+  #host: <%= ENV['MONGOID_HOST'] %>
+  #port: <%= ENV['MONGOID_PORT'] %>
+  #username: <%= ENV['MONGOID_USERNAME'] %>
+  #password: <%= ENV['MONGOID_PASSWORD'] %>
+  #database: <%= ENV['MONGOID_DATABASE'] %>
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

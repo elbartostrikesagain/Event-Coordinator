@@ -27,8 +27,8 @@ describe MainEventsController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # MainEventsController. Be sure to keep this updated too.
-  let(:user) {Factory.create(:user)}
-  let(:main_event) {Factory.create(:main_event, user: user)}
+  let(:user) {FactoryGirl.create(:user)}
+  let(:main_event) {FactoryGirl.create(:main_event, user: user)}
 
   describe "GET index" do
     it "assigns all main_events as @main_events" do
@@ -60,7 +60,7 @@ describe MainEventsController do
     end
   end
 
-  let(:user) {Factory(:user)}
+  let(:user) {FactoryGirl.create(:user)}
   describe "POST create" do
     describe "with valid params" do
       let(:valid_attributes) {{"name"=>"test event 4fdsa", "html"=>"fdsafdas"}}
@@ -134,6 +134,7 @@ describe MainEventsController do
     end
 
     describe "with invalid params" do
+      let!(:main_event) {FactoryGirl.create(:main_event, user: user)}
       it "assigns the main_event as @main_event" do
         sign_in user
         # Trigger the behavior that occurs when invalid params are submitted
@@ -154,7 +155,7 @@ describe MainEventsController do
 
   describe "DELETE destroy" do
     it "destroys the requested main_event" do
-      main_event = Factory.create(:main_event)
+      main_event = FactoryGirl.create(:main_event)
       sign_in main_event.user
       expect {
         delete :destroy, {:id => main_event.to_param}
