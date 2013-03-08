@@ -37,7 +37,7 @@ Given /^I exist as a user$/ do
 end
 
 Given /^I do not exist as a user$/ do
-  User.find(:first, :conditions => { :email => valid_user[:email] }).should be_nil
+  User.where(:email => valid_user[:email]).first.should be_nil
   visit '/users/sign_out'
 end
 

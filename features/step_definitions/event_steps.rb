@@ -1,9 +1,9 @@
 Given /^I have created a main event$/ do
-  @main_event = Factory.create(:main_event, user: @current_user)
+  @main_event = FactoryGirl.create(:main_event, user: @current_user)
 end
 
 Given /^I have created an event$/ do
-  @event = Factory.create(:event, main_event: @main_event)
+  @event = FactoryGirl.create(:event, main_event: @main_event)
 end
 
 Then /^I should not see the event$/ do

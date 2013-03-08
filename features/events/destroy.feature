@@ -6,6 +6,6 @@ Feature: New Event
       And I have created a main event
       And I have created an event
       And I am on the main event's home page
-      When I follow "List Events"
+      When I follow "List Shifts"
       And I follow "Destroy"
       Then I should not see the event

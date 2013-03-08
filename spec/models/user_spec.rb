@@ -88,7 +88,7 @@ describe User do
 
     it "should not require a password for a user with oauth authentication" do
       user = User.new(@attr.merge(:password => nil, :password_confirmation => nil))
-      user.authentications << Factory.create(:authentication, user: user)
+      user.authentications << FactoryGirl.create(:authentication, user: user)
       user.should be_valid
     end
     
@@ -111,28 +111,28 @@ describe User do
   end
 
   describe "registered_for?" do
-    let(:user) {Factory.create :user}
+    let(:user) {FactoryGirl.create :user}
     context "main event" do
       it "should return true if a user is registered for a main event" do
-        main_event = Factory.create(:main_event)
+        main_event = FactoryGirl.create(:main_event)
         main_event.workers << user
         main_event.save!
         user.registered_for?(main_event).should be_true
       end
       it "should return false if a user is not registered for a main event" do
-        main_event = Factory.create(:main_event)
+        main_event = FactoryGirl.create(:main_event)
         user.registered_for?(main_event).should be_false
       end
     end
     context "event" do
       it "should return true if a user is registered for an event" do
-        event = Factory.create(:event)
+        event = FactoryGirl.create(:event)
         event.users << user
         event.save!
         user.registered_for?(event).should be_true
       end
       it "should return false if a user is not registered for an event" do
-        event = Factory.create(:event)
+        event = FactoryGirl.create(:event)
         user.registered_for?(event).should be_false
       end
     end

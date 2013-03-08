@@ -2,7 +2,7 @@ class MainEvent
   include Mongoid::Document
 
   has_many :events
-  belongs_to :user
+  belongs_to :user, inverse_of: nil
   has_many :workers, class_name: "User", inverse_of: "registered_main_events"
 
   field :name, :type => String

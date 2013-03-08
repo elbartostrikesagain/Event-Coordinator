@@ -11,7 +11,7 @@ group :assets do
 end
 
 #group :assets do
-  gem 'jquery-rails'
+  gem 'jquery-rails', :git => "git://github.com/rails/jquery-rails.git"
 #end
 
 gem "haml", ">= 3.1.4"
@@ -19,9 +19,12 @@ gem "haml-rails", ">= 0.3.4", :group => :development
 gem "rspec-rails", ">= 2.8.1", :group => [:development, :test]
 gem "database_cleaner", ">= 0.7.1", :group => :test
 gem "mongoid-rspec", ">= 1.4.4", :group => :test
-gem "factory_girl_rails", ">= 1.6.0", :group => :test
-gem "cucumber-rails", ">= 1.2.1", :group => :test
-gem "capybara", ">= 1.1.2", :group => :test
+#gem "factory_girl_rails", ">= 1.6.0", :group => :test
+#gem "cucumber-rails", ">= 1.2.1", :group => :test
+#gem "capybara", ">= 1.1.2", :group => :test
+gem "factory_girl_rails", "~> 4.0", :group => :test
+gem "cucumber-rails", :group => :test
+gem "capybara", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "guard", ">= 0.6.2", :group => :development  
 #case HOST_OS
@@ -58,3 +61,6 @@ gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
 
 gem "kaminari"
+
+gem 'better_errors', :group => :development
+gem 'binding_of_caller', :group => :development
