@@ -1,32 +1,42 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'https://rubygems.org'
+
 gem 'rails', '3.2.1'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  
-  
   gem 'uglifier', '>= 1.0.3'
 end
 
-#group :assets do
-  gem 'jquery-rails', :git => "git://github.com/rails/jquery-rails.git"
-#end
+gem 'jquery-rails', :git => "git://github.com/rails/jquery-rails.git"
+gem "haml"
+gem "bson_ext", ">= 1.3.1"
+gem "mongoid", ">= 2.4.3"
+#authentication
+gem "devise", ">= 2.0.0"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "omniauth-google"
+#gem "omniauth-google-oauth2"
+gem "bootstrap-sass", "~> 2.0.0"
+gem "cancan", :git => "git://github.com/ryanb/cancan.git"
+gem "therubyracer"
+gem "kaminari"
 
-gem "haml", ">= 3.1.4"
-gem "haml-rails", ">= 0.3.4", :group => :development
 gem "rspec-rails", ">= 2.8.1", :group => [:development, :test]
-gem "database_cleaner", ">= 0.7.1", :group => :test
-gem "mongoid-rspec", ">= 1.4.4", :group => :test
-#gem "factory_girl_rails", ">= 1.6.0", :group => :test
-#gem "cucumber-rails", ">= 1.2.1", :group => :test
-#gem "capybara", ">= 1.1.2", :group => :test
-gem "factory_girl_rails", "~> 4.0", :group => :test
-gem "cucumber-rails", :group => :test
-gem "capybara", :group => :test
-gem "launchy", ">= 2.0.5", :group => :test
-gem "guard", ">= 0.6.2", :group => :development  
+
+group :test do
+  gem "database_cleaner", ">= 0.7.1"
+  gem "mongoid-rspec", ">= 1.4.4"
+  gem "factory_girl_rails", "~> 4.0"
+  gem "cucumber-rails"
+  gem "capybara"
+  gem "launchy", ">= 2.0.5"
+end
+
 #case HOST_OS
 #  when /darwin/i
 #    gem 'rb-fsevent', :group => :development
@@ -39,28 +49,18 @@ gem "guard", ">= 0.6.2", :group => :development
 #    gem 'win32console', :group => :development
 #    gem 'rb-notifu', :group => :development
 #end
-gem "guard-bundler", ">= 0.1.3", :group => :development
-gem "guard-rails", ">= 0.0.3", :group => :development
-gem "guard-livereload", ">= 0.3.0", :group => :development
-gem "guard-rspec", ">= 0.4.3", :group => :development
-gem "guard-cucumber", ">= 0.6.1", :group => :development
-gem "pry", :group => :development
-gem "pry-nav", :group => :development
-gem "bson_ext", ">= 1.3.1"
-gem "mongoid", ">= 2.4.3"
-#authentication
-gem "devise", ">= 2.0.0"
-gem "omniauth"
-gem "omniauth-twitter"
-gem "omniauth-facebook"
-gem "omniauth-google"
-#gem "omniauth-google-oauth2"
 
-gem "bootstrap-sass", "~> 2.0.0"
-gem "cancan", :git => "git://github.com/ryanb/cancan.git"
-gem "therubyracer"
-
-gem "kaminari"
-
-gem 'better_errors', :group => :development
-gem 'binding_of_caller', :group => :development
+group :development do
+  gem 'heroku_san'
+  gem "haml-rails"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem "guard-bundler", ">= 0.1.3"
+  gem "guard-rails", ">= 0.0.3"
+  gem "guard-livereload", ">= 0.3.0"
+  gem "guard-rspec", ">= 0.4.3"
+  gem "guard-cucumber", ">= 0.6.1"
+  gem "pry"
+  gem "pry-nav"
+  gem "guard", ">= 0.6.2"
+end

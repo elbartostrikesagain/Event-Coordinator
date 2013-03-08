@@ -94,6 +94,7 @@ GEM
       http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
     eventmachine (1.0.1)
+    excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -135,6 +136,11 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hashie (1.2.0)
+    heroku-api (0.3.8)
+      excon (~> 0.16.10)
+    heroku_san (4.2.5)
+      heroku-api (>= 0.1.2)
+      rake
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
@@ -301,8 +307,9 @@ DEPENDENCIES
   guard-livereload (>= 0.3.0)
   guard-rails (>= 0.0.3)
   guard-rspec (>= 0.4.3)
-  haml (>= 3.1.4)
-  haml-rails (>= 0.3.4)
+  haml
+  haml-rails
+  heroku_san
   jquery-rails!
   kaminari
   launchy (>= 2.0.5)
