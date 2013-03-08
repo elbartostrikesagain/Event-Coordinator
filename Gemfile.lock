@@ -175,6 +175,7 @@ GEM
     moped (1.4.2)
     multi_json (1.6.1)
     multipart-post (1.2.0)
+    newrelic_rpm (3.5.8.72)
     nokogiri (1.5.6)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -315,6 +316,7 @@ DEPENDENCIES
   launchy (>= 2.0.5)
   mongoid (>= 2.4.3)
   mongoid-rspec (>= 1.4.4)
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-google

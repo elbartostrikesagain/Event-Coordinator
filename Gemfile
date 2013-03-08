@@ -26,6 +26,8 @@ gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
 gem "kaminari"
 
+gem 'newrelic_rpm'
+
 gem "rspec-rails", ">= 2.8.1", :group => [:development, :test]
 
 group :test do
