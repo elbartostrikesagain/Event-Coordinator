@@ -13,14 +13,13 @@
 production:
   app: event-coordinator
   stack: cedar
-  tag: production/*
   config:
     BUNDLE_WITHOUT: "development:test"
     GOOGLE_ANALYTICS: "UA-12345678-1"
 
 staging:
   stack: cedar
-  app: awesomeapp-staging
+  app: staging-event-coordinator
   config: &default
     BUNDLE_WITHOUT: "development:test"
   addons:
