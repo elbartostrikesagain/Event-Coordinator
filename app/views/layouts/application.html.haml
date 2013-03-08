@@ -12,9 +12,6 @@
     /= stylesheet_link_tag "fullcalendar.css"
     /= javascript_include_tag "application.js"
 
-    /these are needed for the calendar.
-    = javascript_include_tag "fullcalendar.js"
-    = javascript_include_tag "calendar.js"
     = csrf_meta_tags
   %body{:class => params[:controller]}
     #container.container
