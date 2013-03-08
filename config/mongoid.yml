@@ -1,3 +1,16 @@
+production:
+  sessions:
+    default:
+      #host: <%= ENV['MONGOID_HOST'] %>
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      #port: <%= ENV['MONGOID_PORT'] %>
+      #username: <%= ENV['MONGOID_USERNAME'] %>
+      options:
+        use_utc: false
+        use_activesupport_time_zone: true
+        identity_map_enabled: true
+
+
 development:
   # Configure available database sessions. (required)
   sessions:
