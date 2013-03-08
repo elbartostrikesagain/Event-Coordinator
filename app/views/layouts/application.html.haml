@@ -14,14 +14,15 @@
 
     = csrf_meta_tags
   %body{:class => params[:controller]}
-    #container.container
-      %header
-        %nav
-          %ul.hmenu
-            = render 'shared/navigation'
+    %nav
+      %ul.hmenu
+        = render 'shared/navigation'
+    %header
+      .container
         - flash.each do |name, msg|
           = render 'shared/flash_messages'#, :locales => {flash}
           /= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
-      #main{:role => "main"}
-        = yield
-      %footer
+    #main.container{:role => "main"}
+
+      = yield
+    %footer
