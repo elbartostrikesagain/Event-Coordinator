@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  $("#main_event_html").cleditor({
-  })
+  # $("#main_event_html").cleditor({
+  # })

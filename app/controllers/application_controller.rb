@@ -28,9 +28,19 @@ class ApplicationController < ActionController::Base
   def require_login
     unless current_user
       flash[:error] = "Access denied. Please sign in first."
-      session[:return_to] = request.referer
+      session[:return_to] = request.path
       redirect_to new_user_session_path
     end
+  end
+
+  def load_event
+    @event = Event.find(params[:id])
+  end
+
+  def access_denied
+    main_event = @main_event || @event.main_event || root_path
+    flash[:error] = "Access Denied. (We require more vespene gas)"
+    redirect_to main_event and return
   end
 
 end

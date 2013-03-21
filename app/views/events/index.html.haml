@@ -3,7 +3,7 @@
   = link_to 'Add Shift', new_main_event_event_path(@main_event), :class => "btn btn-primary"
 %h3 Calendar Shifts
 = paginate @events
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped#shifts
   %tr
     %th Title
     %th Time frame
@@ -25,6 +25,9 @@
           = link_to "Unregister", unregister_from_event_path(event.id)
         -elsif difference(event.num_users, event.users.count) != 0
           = link_to "Sign up", sign_up_for_event_path(event.id)
+        -if can? :update, event
+          \/
+          =link_to "Edit workers", workers_for_shift_path(event.id)
         ="(#{event.users.count}/#{event.num_users})"
       -if can? :update, event
         -unless @main_event.currency.blank?

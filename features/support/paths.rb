@@ -20,6 +20,8 @@ module NavigationHelpers
       '/main_events'
     when /the main event's home page/
       "/main_events/#{@main_event.id}"
+    when /the main event's list shifts page/
+      "/main_events/#{@main_event.id}/events"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

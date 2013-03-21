@@ -34,7 +34,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 
 module WithinHelpers
   def with_scope(locator)
-    locator ? within(*selector_for(locator)) { yield } : yield
+    locator.gsub!("\"", '')
+    locator ? within(locator) { yield } : yield
   end
 end
 World(WithinHelpers)

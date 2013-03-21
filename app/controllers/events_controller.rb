@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :require_login, :only => :sign_up
+  before_filter :load_event, only: [:update, :edit, :show, :destroy, :sign_up, :unregister]
   # GET /events
   # GET /events.xml
   def index
@@ -24,7 +25,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
-    @event = Event.find(params[:id])
     @main_event = @event.main_event
 
     respond_to do |format|
@@ -49,7 +49,6 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
     @event_start = @event.starts_at.strftime('%m/%d/%Y %I:%M %p')
     @event_end = @event.ends_at.strftime('%m/%d/%Y %I:%M %p')
     redirect_to main_event_event_path(@event.main_event, @event) unless can? :update, @event
@@ -88,7 +87,6 @@ class EventsController < ApplicationController
   # it on the week or day view), this method will be called to update the values.
   # viv la REST!
   def update
-    @event = Event.find(params[:id])
     params[:event][:starts_at] = Time.strptime(params[:starts_at], '%m/%d/%Y %I:%M %p')
     params[:event][:ends_at] = Time.strptime(params[:ends_at], '%m/%d/%Y %I:%M %p')
     params[:event][:all_day] =  params[:event][:all_day] == "0"? false : true
@@ -109,7 +107,6 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.xml
   def destroy
-    @event = Event.find(params[:id])
     main_event = @event.main_event
     @event.destroy
 
@@ -120,19 +117,17 @@ class EventsController < ApplicationController
   end
 
   def sign_up
-    event = Event.find(params[:id])
-    event.users << current_user
-    event.main_event.workers << current_user unless current_user.registered_for?(event.main_event)
-    event.save!
-    redirect_to main_event_event_index_path(event.main_event)
+    @event.users << current_user
+    @event.main_event.workers << current_user unless current_user.registered_for?(@event.main_event)
+    @event.save!
+    redirect_to main_event_event_index_path(@event.main_event)
   end
 
   def unregister
-    event = Event.find(params[:id])
-    user_count = event.users.where(_id: current_user.id).all.count
-    event.user_ids.delete(current_user.id) if user_count > 0
-    event.save!
-    redirect_to main_event_event_index_path(event.main_event)
+    user_count = @event.users.where(_id: current_user.id).all.count
+    @event.user_ids.delete(current_user.id) if user_count > 0
+    @event.save!
+    redirect_to main_event_event_index_path(@event.main_event)
   end
 
 end

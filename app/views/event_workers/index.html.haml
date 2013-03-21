@@ -1,0 +1,18 @@
+=link_to "Back", main_event_event_index_path(@event.main_event)
+%fieldset
+  %legend Add Users
+  %label Name
+  %input{:placeholder => "ex. Deckard Cain", :type => "text", id: "name"}/
+  %label Email
+  %input{:placeholder => "deckard.cain@example.com", :type => "text", id: "email"}/
+  %div
+    =link_to "Search", "#", {class: "btn", id: "search"}
+  #results
+    %dl#result_list
+%br
+%fieldset
+  %legend Registered Users
+-@event.users.each do |user|
+  .user
+    =user.name
+    =link_to "(remove)", remove_worker_from_shift_path(@event, user), :method => :delete

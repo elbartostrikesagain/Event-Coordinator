@@ -12,6 +12,11 @@ EventCoordinator::Application.routes.draw do
   get "main_events/:main_event_id/calender/events" => "calendar#events", :as => :calendar_events
   get "events/:id/sign_up" => "events#sign_up", :as => :sign_up_for_event
   get "events/:id/unregister" => "events#unregister", :as => :unregister_from_event
+  
+  get "events/:id/workers/search" => "event_workers#show", as: :search_workers
+  get "events/:id/workers" => "event_workers#index", as: :workers_for_shift
+  put "events/:id/workers/:worker_id" => "event_workers#update", as: :test
+  delete "events/:id/workers/:worker_id" => "event_workers#destroy", as: :remove_worker_from_shift
 
   get "main_events/:id/register" => "main_events#register", :as => :register_for_main_event
   get "main_events/:id/unregister" => "main_events#unregister", :as => :unregister_for_main_event

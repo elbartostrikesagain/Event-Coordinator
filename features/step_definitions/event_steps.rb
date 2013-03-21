@@ -2,10 +2,12 @@ Given /^I have created a main event$/ do
   @main_event = FactoryGirl.create(:main_event, user: @current_user)
 end
 
-Given /^I have created an event$/ do
-  @event = FactoryGirl.create(:event, main_event: @main_event)
+Given /^A main event exists$/ do
+  @main_event = FactoryGirl.create(:main_event)
 end
 
-Then /^I should not see the event$/ do
-  step %{I should not see "#{@event.title}"}
+Given /^A user is registered with the main event$/ do
+  @user = FactoryGirl.create(:user)
+  @main_event.workers << @user
+  @main_event.save!
 end

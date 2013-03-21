@@ -1,6 +1,7 @@
 class MainEventsController < ApplicationController
   load_and_authorize_resource
-  skip_authorize_resource :only => [:show]
+  skip_authorize_resource :only => [:show, :register, :unregister]
+  before_filter :require_login, only: [:register, :unregister]
 
   # GET /main_events
   # GET /main_events.json
