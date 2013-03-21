@@ -26,6 +26,7 @@ gem "bootstrap-sass", "~> 2.0.0"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
 gem "kaminari"
+gem "bootstrap-wysihtml5-rails"
 
 gem 'newrelic_rpm'
 

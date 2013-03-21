@@ -1,3 +1,6 @@
+= stylesheet_link_tag "bootstrap-wysihtml5.css"
+= javascript_include_tag "html_editor.js"
+
 = form_for([:main_event, @event], :url => url, html: {class: 'form-horizontal eventForm'}) do |f|
   %legend
   %fieldset
@@ -37,7 +40,7 @@
       .help-block (Times will be irrelevant and events will show at the top of the calendar in the all day section)
     .field
       = f.label "Description(HTML)"
-      = f.text_area :description, :style => "width: 920px;"
+      = f.text_area :description, :style => "width: 920px;", id: 'html'
     .actions
       %br
       .alert.alert-error#formError{:style => "display:none;"}

@@ -1,6 +1,5 @@
-= stylesheet_link_tag "jquery.cleditor.css"
-= javascript_include_tag "jquery.cleditor.js"
-= javascript_include_tag "main_events.js"
+= stylesheet_link_tag "bootstrap-wysihtml5.css"
+= javascript_include_tag "html_editor.js"
 
 = form_for @main_event do |f|
   -if @main_event.errors.any?
@@ -34,6 +33,6 @@
       = f.text_field :shifts_notice, class: 'input-xlarg', :style => "width: 800px;", :maxlength => 400
   .field
     = f.label :html
-    = f.text_area :html, :style => "width: 800px;"
+    = f.text_area :html, :style => "width: 800px;", id: "html"
   .actions
     = f.submit 'Save', class: 'btn'

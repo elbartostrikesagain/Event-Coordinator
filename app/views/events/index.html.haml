@@ -8,7 +8,6 @@
     %th Title
     %th Time frame
 
-    %th Description
     %th Sign up/Full
     -if can? :update, @main_event
       -unless @main_event.currency.blank?
@@ -19,7 +18,6 @@
     %tr
       %td= link_to event.title, main_event_event_path(event.main_event, event)
       %td= format_event_time_frame(event)
-      %td= event.description
       %td
         -if current_user && current_user.registered_for?(event)
           = link_to "Unregister", unregister_from_event_path(event.id)

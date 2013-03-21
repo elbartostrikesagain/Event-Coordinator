@@ -13,4 +13,4 @@
 //= require jquery.rest
 //= require bootstrap
 //= require setup
-// require_tree .
+//= require jquery_ujs
