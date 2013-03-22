@@ -32,8 +32,7 @@ module EventCoordinator
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/vendor/assets)
-    config.assets.precompile += ['calendar.js', 'fullcalendar.js', 'html_editor.js', 'calendar.js', 'datepicker.js', 'bootstrap-wysihtml5.css']
+    config.assets.precompile += ['calendar.js', 'fullcalendar.js', 'html_editor.js', 'calendar.js', 'datepicker.js', 'bootstrap-wysihtml5.css', 'gcal.js', 'jquery-ui-timepicker-addon.js', 'jquery-ui-1.8.11.custom.min.js', 'wysihtml5-0.3.0.js']
     config.assets.precompile += %w( *-bundle.js )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
