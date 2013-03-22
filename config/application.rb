@@ -32,6 +32,7 @@ module EventCoordinator
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/vendor/assets)
     config.assets.precompile += ['calendar.js', 'fullcalendar.js', 'html_editor.js', 'calendar.js', 'datepicker.js', 'bootstrap-wysihtml5.css']
     config.assets.precompile += %w( *-bundle.js )
 
