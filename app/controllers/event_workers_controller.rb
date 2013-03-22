@@ -21,8 +21,8 @@ class EventWorkersController < ApplicationController
   end
 
   def show    
-    name = /.*#{params[:name].gsub(/\s/, ".*")}.*/
-    email = /.*#{params[:email]}.*/
+    name = /.*#{params[:name].gsub(/\s/, ".*")}.*/i
+    email = /.*#{params[:email]}.*/i
     users = User.where(name: name, email: email).not_in(event_ids: [@event.id])
     render json: {users: users}
   end
