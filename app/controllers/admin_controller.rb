@@ -10,6 +10,8 @@ class AdminController < ApplicationController
     current_count = 0
     @main_event.events.each {|e| current_count += e.users.count} #TODO- bad performance/scaling
     @worker_count_summary = "#{current_count.to_i}/#{@main_event.events.sum(:num_users).to_i}"
+
+    @emails = User.emails_for_event(@main_event)
   end
 
 end

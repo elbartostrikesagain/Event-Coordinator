@@ -3,6 +3,10 @@
   Positions filled:
   =@worker_count_summary
 %h2 Workers
+%button#copy-emails{:type => "button", class: "btn"} Copy emails
+#emails
+  =@emails
+
 %table.table.table-bordered.table-striped
   %tr
     %th Name

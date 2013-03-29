@@ -27,6 +27,7 @@ gem "cancan", :git => "git://github.com/ryanb/cancan.git"
 gem "therubyracer"
 gem "kaminari"
 gem "bootstrap-wysihtml5-rails"
+gem 'zclip-rails'
 
 gem 'newrelic_rpm'
 

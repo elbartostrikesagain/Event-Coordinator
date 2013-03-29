@@ -103,5 +103,10 @@ class User
     currency
   end
 
+  def self.emails_for_event(main_event)
+    #test guy1 <test@test.com> , test2 guy <test2@test.com>
+    main_event.workers.map{|worker| "#{worker.name} <#{worker.email}>"}.join(",")
+  end
+
 end
 
