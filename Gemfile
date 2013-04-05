@@ -28,7 +28,7 @@ gem "therubyracer"
 gem "kaminari"
 gem "bootstrap-wysihtml5-rails"
 gem 'zclip-rails'
-
+gem "pdfkit"
 gem 'newrelic_rpm'
 
 gem "rspec-rails", ">= 2.8.1", :group => [:development, :test]
