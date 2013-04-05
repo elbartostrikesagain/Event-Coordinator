@@ -15,7 +15,7 @@ EventCoordinator::Application.routes.draw do
   
   get "events/:id/workers/search" => "event_workers#show", as: :search_workers
   get "events/:id/workers" => "event_workers#index", as: :workers_for_shift
-  put "events/:id/workers/:worker_id" => "event_workers#update", as: :test
+  put "events/:id/workers/:worker_id" => "event_workers#update", as: :add_event_worker
   delete "events/:id/workers/:worker_id" => "event_workers#destroy", as: :remove_worker_from_shift
 
   get "main_events/:id/register" => "main_events#register", :as => :register_for_main_event

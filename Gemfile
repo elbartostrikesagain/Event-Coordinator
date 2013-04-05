@@ -39,6 +39,7 @@ group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "cucumber-rails"
   gem "capybara"
+  gem "capybara-webkit"
   gem "launchy", ">= 2.0.5"
 end
 

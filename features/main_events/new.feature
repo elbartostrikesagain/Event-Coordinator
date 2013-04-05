@@ -6,7 +6,8 @@ Feature: New Main Event
       And I am on the main events page
       And I follow "Create a new event to coordinate »"
       And I fill in "Name" with "My Event"
-      And I fill in "Html" with "Hello World"
+      And I wait for the html editor to load
+      And I fill in "html" with "Hello World"
       And I press "Save"
       Then I should see "Main event was successfully created."
       And I should see "My Event"

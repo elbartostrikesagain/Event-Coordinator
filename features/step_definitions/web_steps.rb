@@ -210,3 +210,10 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
     assert_not_equal path_to(page_name), current_path
   end
 end
+
+When /^I wait for the html editor to load$/ do
+  10.times do
+    break if page.has_field?('html', :with => '')
+    sleep 1
+  end
+end

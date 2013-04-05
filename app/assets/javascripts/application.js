@@ -13,7 +13,7 @@
 //= require jquery.rest
 //= require bootstrap
 //= require setup
-// require jquery_ujs
+//= require jquery_ujs
 //= require zclip
 
 $(document).ready(function() {
