@@ -1,0 +1,23 @@
+%h1
+  EventOverlord.com -
+  =@main_event.name
+%hr
+- @shifts.each do |shift|
+  %div
+    %h4
+      =shift.title
+      ="(#{shift.users.count}/#{shift.num_users})"
+    %div
+      %strong Time Frame:
+      = format_event_time_frame(shift)
+    %div
+      %strong Description:
+      =shift.description
+    -if @main_event.currency.present?
+      %div
+        %strong Reward:
+        ="#{shift.currency_rate}#{@main_event.currency}"
+    %div
+      %strong Workers:
+      =shift.users.map(&:name).join(", ")
+  %hr

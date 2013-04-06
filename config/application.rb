@@ -17,7 +17,7 @@ end
 
 module EventCoordinator
   class Application < Rails::Application
-
+    config.middleware.use "PDFKit::Middleware", :print_media_type => true
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.view_specs false

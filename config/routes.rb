@@ -30,6 +30,8 @@ EventCoordinator::Application.routes.draw do
   #google auth site verification
   match '/google1a1eff988923f33a', :to => redirect('/google1a1eff988923f33a.html')
 
+  get "events/:main_event_id/shifts_pdf" => "shifts_pdf#index", :as => :shifts_pdf
+
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
   #post "main_events/:main_event_id/events" => "events#create", :as => :create_event
 

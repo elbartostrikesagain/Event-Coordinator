@@ -3,10 +3,14 @@
   Positions filled:
   =@worker_count_summary
 %h2 Workers
-%button#copy-emails{:type => "button", class: "btn"} Copy emails
+
+= link_to "Download Shifts (PDF)", shifts_pdf_path(@main_event, :format => "pdf"), {class: "btn btn-primary", id: "pdf_link"}
+
+%button#copy-emails{:type => "button", class: "btn btn-primary"} Copy emails
 #emails
   =@emails
-
+%br
+%br
 %table.table.table-bordered.table-striped
   %tr
     %th Name

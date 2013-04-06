@@ -86,6 +86,7 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
+    daemons (1.1.9)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
     devise (2.2.3)
@@ -278,6 +279,10 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.12)
@@ -339,5 +344,6 @@ DEPENDENCIES
   rspec-rails (>= 2.8.1)
   sass-rails (~> 3.2.3)
   therubyracer
+  thin
   uglifier (>= 1.0.3)
   zclip-rails
