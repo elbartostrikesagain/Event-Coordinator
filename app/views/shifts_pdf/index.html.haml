@@ -38,7 +38,7 @@
     -if @main_event.currency.present?
       %div
         %strong Reward:
-        ="#{shift.currency_rate}#{@main_event.currency}"
+        ="#{shift.currency_rate} #{@main_event.currency}"
     %div
       %strong Workers:
       =shift.users.map(&:name).join(", ")
