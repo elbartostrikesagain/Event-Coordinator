@@ -19,14 +19,14 @@
       display: none;
     }
   }
-  
+
 %h1
   EventOverlord.com -
   =@main_event.name
 %hr
 - @shifts.each do |shift|
   %div
-    %h4
+    %h3
       =shift.title
       ="(#{shift.users.count}/#{shift.num_users})"
     %div
