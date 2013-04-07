@@ -6,8 +6,8 @@
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"
+    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"
     = javascript_include_tag :application
     = javascript_include_tag params[:controller]+'-bundle' if EventCoordinator::Application.assets.find_asset("#{params[:controller]}-bundle")
     /= stylesheet_link_tag "fullcalendar.css"
