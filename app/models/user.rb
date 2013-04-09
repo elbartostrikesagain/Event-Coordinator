@@ -10,7 +10,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable#, :confirmable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -45,12 +45,14 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
   field :name, :type => String
   validates_presence_of :name, :email
   validates_uniqueness_of :email, :case_sensitive => false
   validate :has_authentication
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+
+  before_save :ensure_authentication_token
 
   def registered_for?(event)
     if event.is_a?(Event)

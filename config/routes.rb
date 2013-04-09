@@ -32,6 +32,16 @@ EventCoordinator::Application.routes.draw do
 
   get "events/:main_event_id/shifts_pdf" => "shifts_pdf#index", :as => :shifts_pdf
 
+  namespace :api do
+    namespace :v1 do
+      devise_scope :user do
+        post 'registrations' => 'registrations#create', :as => 'register'
+        post 'sessions' => 'sessions#create', :as => 'login'
+        delete 'sessions' => 'sessions#destroy', :as => 'logout'
+      end
+    end
+  end
+
   #get "main_events/:main_event_id/events" => "events#index", :as => :events
   #post "main_events/:main_event_id/events" => "events#create", :as => :create_event
 
