@@ -38,7 +38,7 @@ group :test do
   gem "mongoid-rspec", ">= 1.4.4"
   gem "factory_girl_rails", "~> 4.0"
   gem "cucumber-rails"
-  gem "capybara"
+  gem "capybara", "~> 2.0.2"
   gem "capybara-webkit"
   gem "launchy", ">= 2.0.5"
 end
