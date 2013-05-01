@@ -29,7 +29,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if session[:omniauth]
       #@user = User.first(conditions: {email: session[:omniauth][:info][:email]})
-      @user = Authentication.first(conditions: {uid: session[:omniauth][:uid]}).user
+      @user = Authentication.first(conditions: {uid: session[:omniauth][:uid]}).try(:user)
       @user = User.new(email: session[:omniauth][:info][:email], name: session[:omniauth][:info][:name]) if @user.nil?
       @user.apply_omniauth(session[:omniauth])
       @user.authentications.last.save!
