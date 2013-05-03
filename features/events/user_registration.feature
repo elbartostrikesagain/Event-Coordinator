@@ -5,7 +5,7 @@ Feature: Registering users for shifts
 
   Scenario: Regular user should not see admin options
     Given I am logged in
-    And A main event exists
+    And a main event exists
     And An event exists
     And I am on the the main event's list shifts page
     Then I should not see "Edit workers" within "#shifts"
@@ -14,7 +14,7 @@ Feature: Registering users for shifts
 
   Scenario: Regular user be able to register and unregister from shifts
     Given I am logged in
-    And A main event exists
+    And a main event exists
     And An event exists
     And I am on the the main event's list shifts page
     When I follow "Sign up" within "#shifts"
