@@ -1,6 +1,10 @@
 = stylesheet_link_tag "bootstrap-wysihtml5"
 = javascript_include_tag "html_editor"
 
+=render :partial => "currency_help"
+=render :partial => "notice_help"
+
+
 = form_for @main_event do |f|
   -if @main_event.errors.any?
     #error_explanation
@@ -13,7 +17,9 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label "Currency label($, pts, etc)"
+    %label{"for" => "main_event_Currency label($, pts, etc)"}
+      Currency label($, pts, etc)
+      %a{"data-toggle" => "modal", :href => "#currencyHelpModal"} (?)
     = f.text_field :currency
   .control-group
     %label.control-label Default Calendar View
@@ -28,7 +34,9 @@
         = f.radio_button(:default_calendar_view, "month")
         Month
   .control-group
-    = f.label "List shift/Calendar notice", class: 'control-label'
+    %label.control-label{"for" => "main_event_Event Notice"}
+      Event notice
+      %a{"data-toggle" => "modal", :href => "#noticeHelpModal"} (?)
     .controls
       = f.text_field :shifts_notice, class: 'input-xlarg', :style => "width: 800px;", :maxlength => 400
   .field
