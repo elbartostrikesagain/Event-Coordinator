@@ -19,8 +19,7 @@
     .control-group
       = f.label "Number of workers", class: 'control-label'
       .controls
-        = f.number_field :num_users, :in => 0..20
-        %p.help-block 20 max
+        = f.number_field :num_users
     .control-group
       = f.label "#{@event.main_event.currency}/hr", class: 'control-label'
       .controls
