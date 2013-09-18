@@ -50,4 +50,16 @@ class Event
     ((self.ends_at.to_i - self.starts_at.to_i)/3600) * self.currency_rate
   end
 
+  def self.total_hours
+    total_hours = 0
+    Event.each do |event|
+      if event.all_day
+        total_hours += 8
+      else
+        total_hours += (event.ends_at.to_i - event.starts_at.to_i)/3600
+      end
+    end
+    total_hours
+  end
+
 end
